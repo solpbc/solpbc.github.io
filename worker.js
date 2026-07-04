@@ -4,6 +4,12 @@
 
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
+// Base security headers applied by applySecurityHeaders() to Worker-served responses.
+// INVARIANT: this Content-Security-Policy is the site's base policy and MUST stay
+// byte-identical to the /* CSP in public/_headers (which the assets runtime applies to
+// every directly-served asset — i.e. every page NOT in wrangler.toml `run_worker_first`).
+// Looser per-page policies (CONTACT/DEMO/TALKS/BRANDS_CSP below) belong ONLY to their
+// run_worker_first paths; never fold their relaxations into this base or into _headers.
 const SECURITY_HEADERS = {
   'Content-Security-Policy':
     "default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'none'",

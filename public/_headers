@@ -1,10 +1,18 @@
+# CSP source-of-truth invariant: this /* Content-Security-Policy is the site's BASE
+# policy for every directly-served asset, and MUST stay byte-identical to
+# SECURITY_HEADERS['Content-Security-Policy'] in worker.js. Pages that need a looser
+# policy — /contact (Turnstile), /demo, /talks (Cloudflare Stream), /brands (clipboard
+# JS) — are listed in wrangler.toml `run_worker_first`, so the Worker runs for them and
+# applySecurityHeaders() sets their specific CSP. Those relaxations live ONLY in the
+# worker; never widen this /* CSP to accommodate one page (that was the pre-2026-07-04
+# drift — the contact page's challenges.cloudflare.com leaked to every page here).
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-ancestors 'none'
 
 # /talks/* may iframe a same-origin sibling (extro-viz "Buzz" in the deck).
 # SAMEORIGIN matches TALKS_CSP frame-ancestors 'self' (the worker is authoritative;

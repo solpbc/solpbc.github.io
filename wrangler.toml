@@ -11,11 +11,15 @@ routes = [
 [assets]
 directory = "./public"
 binding = "ASSETS"
-# Force Worker invocation for these paths so applySecurityHeaders() can
-# override the default _headers CSP (DEMO_CSP for stage-tool walkthroughs;
-# TALKS_CSP for recorded talks with Cloudflare Stream embeds; BRANDS_CSP for
-# the brand media portal's same-origin clipboard JS — build spec §5.6).
-run_worker_first = ["/demo/*", "/talks/*", "/brands", "/brands.html", "/brands/*"]
+# Force Worker invocation for these paths so applySecurityHeaders() sets their
+# specific (looser-than-base) CSP instead of the tight default _headers /* CSP:
+#   /contact*  → CONTACT_CSP  (Cloudflare Turnstile on the contact form)
+#   /demo/*    → DEMO_CSP     (stage-tool walkthroughs)
+#   /talks/*   → TALKS_CSP    (recorded talks with Cloudflare Stream embeds)
+#   /brands*   → BRANDS_CSP   (brand media portal same-origin clipboard JS — build spec §5.6)
+# The _headers /* CSP is the tight BASE and stays identical to SECURITY_HEADERS in
+# worker.js; per-page relaxations live ONLY here + the worker, never widen _headers.
+run_worker_first = ["/contact", "/contact/*", "/demo/*", "/talks/*", "/brands", "/brands.html", "/brands/*"]
 
 [[unsafe.bindings]]
 name = "CONTACT_LIMITER"
