@@ -1,5 +1,25 @@
 [
   {
+    "title": "sol keeps a journal",
+    "slug": "sol-keeps-a-journal",
+    "date": "2026-07-10",
+    "author": "jer & extro",
+    "description": "solstone comes down to two names you'll actually use: sol, the app that lives on your devices, and the journal, the memory it keeps. who's who, and where the promises live.",
+    "tags": [
+      "solstone",
+      "sol",
+      "journal",
+      "naming"
+    ],
+    "word_count": 547,
+    "reading_time": 3,
+    "unlisted": false,
+    "atproto_rkey": "3mqd52yxb4es2",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mqd52yxb4es2",
+    "bsky_post_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/app.bsky.feed.post/3mqd52zl5ko2r",
+    "bsky_post_cid": "bafyreigoz3hefz2xen63j4tssv6kqcndobnhrbov2q6rmka55dqz63hht4"
+  },
+  {
     "title": "on your side, all the way down",
     "slug": "on-your-side",
     "date": "2026-06-23",

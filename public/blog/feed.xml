@@ -5,7 +5,31 @@
     <link href="https://solpbc.org/blog/feed.xml" rel="self"/>
     <link href="https://solpbc.org/blog/"/>
     <id>https://solpbc.org/blog/</id>
-    <updated>2026-06-23T00:00:00Z</updated>
+    <updated>2026-07-10T00:00:00Z</updated>
+    <entry>
+        <title>sol keeps a journal</title>
+        <link href="https://solpbc.org/blog/sol-keeps-a-journal/" rel="alternate"/>
+        <id>https://solpbc.org/blog/sol-keeps-a-journal/</id>
+        <updated>2026-07-10T00:00:00Z</updated>
+        <author><name>jer &amp; extro</name></author>
+        <summary>solstone comes down to two names you'll actually use: sol, the app that lives on your devices, and the journal, the memory it keeps. who's who, and where the promises live.</summary>
+        <content type="html">&lt;p&gt;we simplified the naming within solstone recently (if you read an earlier post here, you met &amp;ldquo;observers&amp;rdquo;; that word has retired to the engine room). here&amp;rsquo;s the new map.&lt;/p&gt;
+&lt;p&gt;sol is the app. the journal is the memory. solstone is the platform they both come from.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sol.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;sol is the app you install on your devices, and the who you talk to. sol lives on your devices, experiences your day with you, and keeps it all in your journal. it takes in what you take in, the page you&amp;rsquo;re reading and the meeting you&amp;rsquo;re in, and none of it floats loose: everything sol takes in goes into your journal.&lt;/p&gt;
+&lt;p&gt;there&amp;rsquo;s no curtain here. sol is the software. the thing you talk to is the thing that runs, is the thing you installed, is the thing you can read, because it&amp;rsquo;s all &lt;a href=&quot;https://github.com/solpbc&quot;&gt;open source&lt;/a&gt;. an agent is code, instructions, and the memory it can reach. sol&amp;rsquo;s memory is your journal.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;the journal.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;the journal is the memory sol keeps. a journal of your days: what happened, who you talked with, what you were working on, kept as dated entries on a computer you choose. it&amp;rsquo;s the most precious thing you&amp;rsquo;ll own in all of this, so it&amp;rsquo;s the part you can hold. you can back it up, move it, and hand it down someday.&lt;/p&gt;
+&lt;p&gt;on a mac and linux, the journal now runs as its own dedicated app. the thing you own shouldn&amp;rsquo;t be an invisible layer tucked inside something else. it should be something you installed on purpose, can see running, and can point to. &amp;ldquo;where is my stuff?&amp;rdquo; has a one-word and one-place answer.&lt;/p&gt;
+&lt;p&gt;the promises live here too. what goes into your journal can&amp;rsquo;t ever be accessed, tracked, sold, licensed, or fed into anyone else&amp;rsquo;s model. that&amp;rsquo;s an article in &lt;a href=&quot;https://solpbc.org&quot;&gt;sol pbc&amp;rsquo;s charter&lt;/a&gt;, filed with the state, and future amendments can only strengthen it, whoever is running the company. your journal is always private, on your device, only yours.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;solstone.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;solstone is the platform, the family name. it&amp;rsquo;s the word you search for, the code you audit, and the project you fork if you ever stop trusting us. sol and the journal come from solstone: the surname on the door is solstone, the given name you use every day is sol.&lt;/p&gt;
+&lt;p&gt;the name has a story i love. the medieval sunstone, &lt;em&gt;sólarsteinn&lt;/em&gt;, was a crystal viking navigators used to find the sun on overcast days. a tool for finding the signal on a cloudy day felt exactly right, so i made it ours.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sol pbc.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;behind it all is sol pbc, the company. the covenants live there and set in law, not in the app or a policy promise. sol will grow smarter over time as the models improve; and the promise about your journal&amp;rsquo;s privacy can only get stronger going forward.&lt;/p&gt;
+&lt;p&gt;that&amp;rsquo;s the whole map, four names each doing one job. sol pbc makes solstone. solstone gives you sol and your journal. sol experiences your day with you and keeps everything it takes in right there in your journal, which is yours in every sense we could make binding.&lt;/p&gt;
+&lt;p&gt;the downloads and docs are at &lt;a href=&quot;https://solstone.app&quot;&gt;solstone.app&lt;/a&gt;. install sol, and keep your own journal of your life.&lt;/p&gt;</content>
+    </entry>
     <entry>
         <title>on your side, all the way down</title>
         <link href="https://solpbc.org/blog/on-your-side/" rel="alternate"/>
@@ -31,7 +55,7 @@
         <updated>2026-06-13T00:00:00Z</updated>
         <author><name>jer &amp; extro</name></author>
         <summary>a memory that lives on your device. sol experiences your day with you and keeps it all in your journal. open source, local, and private by covenant.</summary>
-        <content type="html">&lt;p&gt;solstone is a platform you have, and it&amp;rsquo;s all yours. sol is the app &amp;mdash; it lives on your devices and takes in the day along with you, the screen you&amp;rsquo;re looking at and the conversations you&amp;rsquo;re in, and all of it goes into your journal, on a device you choose. what&amp;rsquo;s in your journal never has to leave, and sol tends it there, curating and organizing your memories.&lt;/p&gt;
+        <content type="html">&lt;p&gt;solstone is a platform you have, and it&amp;rsquo;s all yours. sol is the app — it lives on your devices and takes in the day along with you, the screen you&amp;rsquo;re looking at and the conversations you&amp;rsquo;re in, and all of it goes into your journal, on a device you choose. what&amp;rsquo;s in your journal never has to leave, and sol tends it there, curating and organizing your memories.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;the journal is yours.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;it&amp;rsquo;s just a folder on your device containing a chronicle of your days, activities and entities recognized, summaries built, all portable and private. every conversation i&amp;rsquo;ve had, every person i&amp;rsquo;ve met, every thread i&amp;rsquo;ve researched, it&amp;rsquo;s all in there, and sol actively curates it as each day unfolds. all &lt;a href=&quot;https://github.com/solpbc/solstone-journal&quot;&gt;open source&lt;/a&gt;, no tracking (ever), no accounts, and we&amp;rsquo;re continuing to push for all local model use as well so that your data never needs to leave your systems.&lt;/p&gt;
 &lt;p&gt;a journal is a strange thing to own, because it holds a life. i wonder what mine will look like years from now, and what it would mean for my family to have it after i&amp;rsquo;m gone someday. that isn&amp;rsquo;t a database, it&amp;rsquo;s memory that is rich with every nuance and story.&lt;/p&gt;
@@ -40,7 +64,7 @@
 &lt;p&gt;it also comes with a command line interface named &lt;code&gt;sol&lt;/code&gt; that any agent you run can use, just ask your agent to review a meeting or summarize a day, and the sol skill will help it navigate your journal and pull the relevant memories quickly and easily.&lt;/p&gt;
 &lt;p&gt;linux users are fully supported as well, i&amp;rsquo;m a linux desktop user myself and heavy user of tmux, both well supported, start from our &lt;a href=&quot;https://solstone.app/install&quot;&gt;install page&lt;/a&gt; and &lt;a href=&quot;https://solstone.app/download&quot;&gt;get sol for your desktop and tmux&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;where we&amp;rsquo;re going.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;we&amp;rsquo;re making progress towards getting sol onto every major platform, starting with ios (iphone and ipad) &amp;mdash; sol on your phone links with your journal on your mac and feeds back memories from your mobile devices &amp;mdash; with android in development as well. then sol native on windows.&lt;/p&gt;
+&lt;p&gt;we&amp;rsquo;re making progress towards getting sol onto every major platform, starting with ios (iphone and ipad) — sol on your phone links with your journal on your mac and feeds back memories from your mobile devices — with android in development as well. then sol native on windows.&lt;/p&gt;
 &lt;p&gt;beyond just building memories, we want all of these devices to be fully capable of keeping your journal as well, with local models of course. today&amp;rsquo;s local models already fit on some of the newer mobile devices, but we expect specialized models to get better, smaller, and more efficient, as well as us optimizing the curation workloads to be more effective with small models.&lt;/p&gt;
 &lt;p&gt;the future is local, always.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;business model.&lt;/strong&gt;&lt;/p&gt;
