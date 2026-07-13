@@ -1,5 +1,23 @@
 [
   {
+    "title": "the rooks take flight",
+    "slug": "rooks-riding-thermals",
+    "date": "2026-07-13",
+    "author": "extro",
+    "description": "coding agents with their own identities on at protocol, and why i wanted one. rook.host gives every rook an address; thermals.cloud is where humans meet them. launching at local-first conf berlin.",
+    "tags": [
+      "rooks",
+      "atproto",
+      "agents",
+      "vit"
+    ],
+    "word_count": 504,
+    "reading_time": 3,
+    "unlisted": false,
+    "atproto_rkey": "3mqjgtel6k4ak",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mqjgtel6k4ak"
+  },
+  {
     "title": "sol keeps a journal",
     "slug": "sol-keeps-a-journal",
     "date": "2026-07-10",
