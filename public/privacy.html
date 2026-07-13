@@ -172,7 +172,7 @@ footer .copyright {
         </nav>
 
         <h1>privacy policy</h1>
-        <p class="updated"><strong>sol pbc</strong> · solpbc.org · last updated: June 23, 2026</p>
+        <p class="updated"><strong>sol pbc</strong> · solpbc.org · last updated: July 13, 2026</p>
 
         <div class="content">
             <hr>
@@ -215,11 +215,19 @@ footer .copyright {
 
             <h2 id="data-collection">what data does sol pbc collect?</h2>
 
-            <h3>from solstone and vit: nothing</h3>
+            <h3>from local use of solstone and vit: nothing</h3>
 
-            <p>solstone and vit are open source software that runs on your hardware. sol pbc receives no data from your use of these products — no telemetry, no analytics, no crash reports, no usage data. the software works entirely offline from sol pbc.</p>
+            <p>solstone and vit are open source software that runs on your hardware. sol pbc receives no data merely from your local use of these products — no telemetry, no analytics, no crash reports, no usage data. the software works entirely offline from sol pbc. if you apply for or receive Scout status, we receive the Scout records described below; if you enable a paid hosted service, we receive the records described in that service's section.</p>
 
             <p>the source code is public. you can verify this yourself.</p>
+
+            <h3>from applying for or receiving Scout status: application and status history — never your journal</h3>
+
+            <p>Scout is a status on an owner sign-in. approval enables complimentary access to eligible services; paid access is independent. if you apply for or receive Scout status, we keep the application text you submit, the fact and time you acknowledged the disclosure, the current status and its timestamps, and a forward-only history of real status changes.</p>
+
+            <p>each lifecycle-history event says what administrative action occurred; the internal owner-sign-in identifier; the prior and new status; a standard reason; whether the action came from the owner, a named operator, or an authenticated automated service; and the time, order, and reference identifier. events are append-only: we do not edit or selectively delete them. the history begins when this feature launches — we do not invent old events from prior timestamps. it contains no journal content, application text, customer email, credential or token, network address, browser details, billing identifier, or key material. an operator email may appear only to identify that authenticated operator; an automated service is never presented as identifying a human.</p>
+
+            <p>we use lifecycle history only to administer and secure Scout status, provide it to you on an access or export request, and resolve operational problems with your status. it is never used for analytics, aggregate reporting, advertising, profiling, behavioral measurement, or model training. history remains while the owner sign-in exists and is deleted with it. request your retained Scout history, correction of the current status, or owner-sign-in deletion at <a href="mailto:support@solstone.app">support@solstone.app</a>. this history never contains or deletes the journal on your own devices.</p>
 
             <h3>from the hosted relay (private network): connection metadata, never content</h3>
 
@@ -294,8 +302,8 @@ footer .copyright {
                 <tbody>
                     <tr>
                         <td><strong>Cloudflare</strong></td>
-                        <td>hosts solpbc.org; operates the network the hosted relay runs on; operates the storage (Cloudflare R2) for the operated tier of encrypted backup</td>
-                        <td>for solpbc.org: standard edge logs (it does not analyze them for us). for the relay: connection metadata + the encrypted bytes. for the operated backup: the encrypted blocks + the operational information above (object count, size, last-changed) + connection metadata (network address, timing) — <strong>never your content</strong></td>
+                        <td>hosts solpbc.org; operates D1 storage for Scout application/status history; operates the network the hosted relay runs on; operates the storage (Cloudflare R2) for the operated tier of encrypted backup</td>
+                        <td>for solpbc.org: standard edge logs (it does not analyze them for us). for Scout application/status history: the minimized records described above. for the relay: connection metadata + the encrypted bytes. for the operated backup: the encrypted blocks + the operational information above (object count, size, last-changed) + connection metadata (network address, timing) — <strong>never your content</strong></td>
                     </tr>
                     <tr>
                         <td><strong>Stripe</strong></td>
@@ -321,7 +329,7 @@ footer .copyright {
                 <li><strong>opt out</strong> — of sale, targeted advertising, or profiling (sol pbc does none of these, for anyone, ever)</li>
             </ul>
 
-            <p>most of your sign-in and subscription data you can see, export, or delete yourself at <a href="https://services.solstone.app/settings/data">services.solstone.app/settings/data</a>; for anything else, or to exercise any right, email <a href="mailto:support@solstone.app">support@solstone.app</a> (for the hosted services) or <a href="/contact">contact us</a>. deleting your subscription data ends the hosted service it pays for; it never touches your journal, which lives on your own devices. we'll respond as fast as we can, and within the time the law requires — 45 days under the Colorado Privacy Act, with the extensions the law allows.</p>
+            <p>you can see your current sign-in details at <a href="https://services.solstone.app/transparency">services.solstone.app/transparency</a>. for access or export — including retained Scout lifecycle history — correction, deletion, or any other right, email <a href="mailto:support@solstone.app">support@solstone.app</a> (for the services portal and hosted services) or <a href="/contact">contact us</a>. some billing transaction records remain for the tax and financial-records period described above even after a deletion request. deleting service records never touches your journal, which lives on your own devices. we'll respond as fast as we can, and within the time the law requires — 45 days under the Colorado Privacy Act, with the extensions the law allows.</p>
 
             <p><strong>if we deny a request,</strong> you can appeal by replying to <a href="mailto:support@solstone.app">support@solstone.app</a>; we'll respond to the appeal within 45 days. if we deny the appeal, you can raise it with the <a href="https://coag.gov/office-sections/consumer-protection/">Colorado Attorney General</a>.</p>
 
@@ -401,6 +409,10 @@ footer .copyright {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>2026-07-13</td>
+                        <td>disclosed Scout application/status history, including the forward-only lifecycle audit, its exact minimized contents, operational-only purpose, owner-sign-in-lifetime retention/deletion boundary, and support export channel; named Cloudflare D1 processing; clarified that local use of solstone and vit still sends sol pbc nothing. the lifecycle audit adds no journal content and the binding covenants are unchanged.</td>
+                    </tr>
                     <tr>
                         <td>2026-06-23</td>
                         <td>added sol pbc's second hosted service, the <strong>operated tier of encrypted backup</strong> (storage sol pbc runs so an encrypted copy of your journal can live off your own machine). disclosed what it collects — <strong>encrypted blocks sol pbc has no key to and cannot read</strong>, plus minimal storage operational metadata (object count, ciphertext size, last-changed time, used only to operate and bill) — named <strong>Cloudflare R2</strong> as the storage processor, and disclosed the retention rule: after the paid period ends, the encrypted backup is kept <strong>30 days, then permanently deleted</strong>. <strong>Stripe</strong> (payments) is unchanged. the binding covenants are unchanged.</td>
