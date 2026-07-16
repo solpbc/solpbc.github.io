@@ -49,8 +49,8 @@
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #fff;
-    color: #444;
+    background: var(--paper);
+    color: var(--ink-soft-paper);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -124,7 +124,7 @@ article blockquote {
     border-left: 3px solid var(--orange);
     padding-left: 1rem;
     margin: 1.5rem 0;
-    color: #777;
+    color: var(--ink-faint-paper);
     font-style: italic;
 }
 
@@ -155,7 +155,7 @@ article img {
     margin: 1.5rem 0;
     display: block;
 }
-article strong { color: #333; }
+article strong { color: var(--ink); }
 article hr {
     border: none;
     border-top: 1px solid #eee;
@@ -180,7 +180,7 @@ article td {
 
 /* --- metadata line --- */
 .meta {
-    color: #999;
+    color: var(--ink-faint-paper);
     font-size: 0.9rem;
     margin-bottom: 2.5rem;
 }
@@ -200,7 +200,7 @@ footer a:hover {
     text-decoration: underline;
 }
 footer .copyright {
-    color: #999;
+    color: var(--ink-faint-paper);
     font-size: 0.85rem;
     margin-top: 1rem;
 }
@@ -232,7 +232,7 @@ footer .copyright {
     margin-bottom: 0.5rem;
 }
 .post-item .description {
-    color: #444;
+    color: var(--ink-soft-paper);
     font-size: 1rem;
     line-height: 1.5;
 }
