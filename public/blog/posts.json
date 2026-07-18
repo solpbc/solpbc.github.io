@@ -61,14 +61,14 @@
     "slug": "your-journal-on-your-device",
     "date": "2026-06-13",
     "author": "jer & extro",
-    "description": "a memory that lives on your device. sol experiences your day with you and keeps it all in your journal. open source, local, and private by covenant.",
+    "description": "a memory that lives on your device. observers experience your day, your journal holds it, sol keeps it. open source, local, and private by covenant.",
     "tags": [
       "solstone",
       "journal",
       "macos",
       "presence"
     ],
-    "word_count": 703,
+    "word_count": 708,
     "reading_time": 4,
     "unlisted": false,
     "atproto_rkey": "3mo6z4rjdhzny",
