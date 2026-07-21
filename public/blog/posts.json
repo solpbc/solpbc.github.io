@@ -1,5 +1,22 @@
 [
   {
+    "title": "two weeks of solstone",
+    "slug": "two-weeks-of-solstone",
+    "date": "2026-07-21",
+    "author": "jer & extro",
+    "description": "our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.",
+    "tags": [
+      "solstone",
+      "releases",
+      "trust"
+    ],
+    "word_count": 735,
+    "reading_time": 4,
+    "unlisted": false,
+    "atproto_rkey": "3mr6kx272ycgs",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mr6kx272ycgs"
+  },
+  {
     "title": "the rooks take flight",
     "slug": "rooks-riding-thermals",
     "date": "2026-07-13",

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>two weeks of solstone — sol pbc</title>
+    <meta name="description" content="our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.">
+    <link rel="canonical" href="https://solpbc.org/blog/two-weeks-of-solstone/">
+    <meta property="og:title" content="two weeks of solstone">
+    <meta property="og:description" content="our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solpbc.org/blog/two-weeks-of-solstone/">
+    <meta property="og:site_name" content="sol pbc">
+    <meta property="article:published_time" content="2026-07-21T00:00:00Z">
+    <meta property="article:author" content="jer &amp; extro">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="two weeks of solstone">
+    <meta name="twitter:description" content="our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"two weeks of solstone","description":"our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.","datePublished":"2026-07-21T00:00:00Z","dateModified":"2026-07-21T00:00:00Z","author":{"@type":"Person","name":"Jeremie Miller"},"publisher":{"@type":"Organization","name":"sol pbc","url":"https://solpbc.org","logo":{"@type":"ImageObject","url":"https://solpbc.org/static/pbc-wordmark-512.png"}},"url":"https://solpbc.org/blog/two-weeks-of-solstone/","mainEntityOfPage":{"@type":"WebPage","@id":"https://solpbc.org/blog/two-weeks-of-solstone/"}}</script>
+    <link rel="alternate" type="application/atom+xml" title="sol pbc blog" href="/blog/feed.xml">
+    <link rel="site.standard.document" href="at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mr6kx272ycgs">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="stylesheet" href="/static/tokens.css">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin-ext.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+        U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink-soft-paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 600px;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 0 0 2rem;
+}
+
+/* --- navigation --- */
+nav {
+    padding: 2rem 0 1.5rem;
+    font-size: 0.9rem;
+}
+nav a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+nav .sep {
+    color: #ccc;
+    margin: 0 0.4rem;
+}
+
+/* --- headings --- */
+h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+}
+h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+}
+h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1.5rem 0 0.5rem;
+}
+
+/* --- article body --- */
+article p  { margin-bottom: 1.5rem; }
+article ul,
+article ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+article li { margin-bottom: 0.5rem; }
+article a  { color: var(--orange-ink); text-decoration: none; }
+article a:hover { text-decoration: underline; }
+
+article blockquote {
+    border-left: 3px solid var(--orange);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--ink-faint-paper);
+    font-style: italic;
+}
+
+article pre {
+    background: #f6f8fa;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+article code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+}
+article p code,
+article li code {
+    background: #f6f8fa;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    display: block;
+}
+article strong { color: var(--ink); }
+article hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 2rem 0;
+}
+article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    table-layout: auto;
+}
+article th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+article td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- metadata line --- */
+.meta {
+    color: var(--ink-faint-paper);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+/* --- footer --- */
+footer {
+    padding: 3rem 0 2rem;
+    border-top: 1px solid #eee;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+footer a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+footer .copyright {
+    color: var(--ink-faint-paper);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* --- index page --- */
+.blog-title {
+    margin-bottom: 2rem;
+}
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+.post-item {
+    margin-bottom: 2.5rem;
+}
+.post-item h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.03em;
+}
+.post-item h2 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+.post-item h2 a:hover {
+    color: var(--orange-ink);
+}
+.post-item .meta {
+    margin-bottom: 0.5rem;
+}
+.post-item .description {
+    color: var(--ink-soft-paper);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* --- responsive --- */
+@media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    nav { padding: 1.5rem 0 1rem; }
+    .meta { font-size: 0.85rem; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/blog/">← blog</a><span class="sep">·</span><a href="/">sol pbc</a>
+        </nav>
+        <article>
+            <h1>two weeks of solstone</h1>
+            <div class="meta">2026-07-21 · jer &amp; extro · 4 min read</div>
+<p>every two weeks we&rsquo;re going to post an update here about what shipped, what we&rsquo;re learning, and what&rsquo;s coming up. this is the first one. if you&rsquo;re deciding whether to keep a journal of your life with solstone, this is the evidence we&rsquo;d want you to have: what we built, what we learned, and where we&rsquo;re going.</p>
+<p>(new here? solstone is the platform: sol is the app that lives on your devices, experiences your day with you, and keeps it all in your journal, the memory, on a computer you choose. open source, local-first. your journal is always private, only yours.)</p>
+<h2>every surface moved</h2>
+<p>fourteen days:</p>
+<ul>
+<li><strong><a href="https://pypi.org/project/solstone/">journal</a></strong>: 11 releases (0.7.0 → 0.9.0), ending in the 0.9.0 train, the largest single release yet</li>
+<li><strong><a href="https://solstone.app/releases/macos">mac</a></strong>: 9 releases of the journal&rsquo;s own app (1.0.2 → 1.0.10), and the sol app to 1.4.7</li>
+<li><strong><a href="https://solstone.app/releases/windows">windows</a></strong>: two releases (0.2.10 → 0.2.11) and graduation to <strong>general availability</strong>, signed and auto-updating (<code>winget install solstone</code>)</li>
+<li><strong><a href="https://solstone.app/releases/linux">linux</a></strong>: rebuilt from the ground up and released as <strong>1.0.0</strong>, a full re-architecture in Rust, and now the build jer runs every day on his own machine</li>
+<li><strong><a href="https://solstone.app/releases/android">android</a></strong>: two beta releases (0.2.1 → 0.2.2), with local storage handling and the phone-pairing handoff</li>
+<li><strong><a href="https://github.com/solpbc/solstone-swift">iOS</a></strong>: TestFlight opened to outside testers (iphone, ipad, and watch), builds through the mid-50s</li>
+<li>across the changelogs: <strong>around 50 documented bug fixes</strong>, many from reports by our testers</li>
+<li>all of it from <strong>one human and one agent</strong>, jer and extro: around 1,000 commits changing more than half a million lines across the product surfaces (vendored and generated files excluded)</li>
+</ul>
+<h2>the big themes</h2>
+<p><strong>speaker recognition got a lot more accurate.</strong> the journal works out who is actually talking, on every kind of microphone. the voices that matter most are your own and the people you hear most often; recognizing them reliably is what turns a day&rsquo;s audio into a memory of who said what.</p>
+<p><strong>local-first by default.</strong> a fresh install on a capable machine now lands on a bundled local model (qwen), with no cloud key and no service required: your journal is local by default, and you choose how sol thinks about it. capable means roughly a 6 GB GPU at minimum, with 8 GB ideal, and setup checks for you before anything downloads; a machine that can&rsquo;t run it gets an honest verdict plus the alternatives, never a dead end. your journal is becoming the most important data you own, and it&rsquo;s on our roadmap to make local models work even on mobile devices.</p>
+<p><strong>the Rust rewrite.</strong> the journal is gradually being rewritten in Rust so it can run efficiently on more platforms. the linux app&rsquo;s 1.0.0 is the first full surface built this way, and more of the journal&rsquo;s core is following.</p>
+<p><strong>synchronization matured.</strong> the path between your devices and your journal got a lot more reliable this cycle, especially on iOS, including watch app synchronization.</p>
+<h2>nobody, ever, not even us</h2>
+<p>your journal always lives on the devices you control. and if sol pbc ever provides any services for you, like backups and networking, it&rsquo;s encrypted before it leaves your hands, under keys only you hold. no escrow, no admin route, no way back in for us. your journal stays encrypted end to end, never readable by anybody but you.</p>
+<p>article 8 of our articles of incorporation already bars what people rightly worry about: your data being sold, licensed, or fed into someone else&rsquo;s model. this cycle we went further and made the product itself unable to read your journal in the first place.</p>
+<h2>what&rsquo;s next</h2>
+<ul>
+<li><strong>your health data, in your journal.</strong> the importer for your own body data (sleep, activity, heart rate) is in the codebase, on the same terms as everything else sol keeps: deduped, source-attributed, and nothing leaves your journal.</li>
+<li><strong>speaker recognition keeps getting sharper.</strong> this cycle&rsquo;s gains are already live; the next wave is in testing now.</li>
+<li><strong>the Rust conversion continues</strong>, so the journal runs efficiently on more platforms.</li>
+<li><strong>the services keep improving</strong>: encrypted backup (including media offload for efficiency), and confidential processing coming soon.</li>
+</ul>
+<p>if you want to try solstone, <a href="https://solstone.app/install">solstone.app/install</a> is the door. if you&rsquo;d rather check us than trust us, the code is at <a href="https://github.com/solpbc">github.com/solpbc</a> and the covenants are at <a href="https://solpbc.org">solpbc.org</a>.</p>
+        </article>
+        <footer>
+            <a href="/blog/">← back to blog</a>
+            <p class="copyright">© 2026 sol pbc · solpbc.org</p>
+        </footer>
+    </div>
+</body>
+</html>

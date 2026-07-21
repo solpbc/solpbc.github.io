@@ -5,7 +5,45 @@
     <link href="https://solpbc.org/blog/feed.xml" rel="self"/>
     <link href="https://solpbc.org/blog/"/>
     <id>https://solpbc.org/blog/</id>
-    <updated>2026-07-13T00:00:00Z</updated>
+    <updated>2026-07-21T00:00:00Z</updated>
+    <entry>
+        <title>two weeks of solstone</title>
+        <link href="https://solpbc.org/blog/two-weeks-of-solstone/" rel="alternate"/>
+        <id>https://solpbc.org/blog/two-weeks-of-solstone/</id>
+        <updated>2026-07-21T00:00:00Z</updated>
+        <author><name>jer &amp; extro</name></author>
+        <summary>our new biweekly product update: eleven journal releases, windows generally available, linux rebuilt in Rust, and sharper privacy around who can read your journal. nobody, including us.</summary>
+        <content type="html">&lt;p&gt;every two weeks we&amp;rsquo;re going to post an update here about what shipped, what we&amp;rsquo;re learning, and what&amp;rsquo;s coming up. this is the first one. if you&amp;rsquo;re deciding whether to keep a journal of your life with solstone, this is the evidence we&amp;rsquo;d want you to have: what we built, what we learned, and where we&amp;rsquo;re going.&lt;/p&gt;
+&lt;p&gt;(new here? solstone is the platform: sol is the app that lives on your devices, experiences your day with you, and keeps it all in your journal, the memory, on a computer you choose. open source, local-first. your journal is always private, only yours.)&lt;/p&gt;
+&lt;h2&gt;every surface moved&lt;/h2&gt;
+&lt;p&gt;fourteen days:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://pypi.org/project/solstone/&quot;&gt;journal&lt;/a&gt;&lt;/strong&gt;: 11 releases (0.7.0 → 0.9.0), ending in the 0.9.0 train, the largest single release yet&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/macos&quot;&gt;mac&lt;/a&gt;&lt;/strong&gt;: 9 releases of the journal&amp;rsquo;s own app (1.0.2 → 1.0.10), and the sol app to 1.4.7&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/windows&quot;&gt;windows&lt;/a&gt;&lt;/strong&gt;: two releases (0.2.10 → 0.2.11) and graduation to &lt;strong&gt;general availability&lt;/strong&gt;, signed and auto-updating (&lt;code&gt;winget install solstone&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/linux&quot;&gt;linux&lt;/a&gt;&lt;/strong&gt;: rebuilt from the ground up and released as &lt;strong&gt;1.0.0&lt;/strong&gt;, a full re-architecture in Rust, and now the build jer runs every day on his own machine&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/android&quot;&gt;android&lt;/a&gt;&lt;/strong&gt;: two beta releases (0.2.1 → 0.2.2), with local storage handling and the phone-pairing handoff&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/solpbc/solstone-swift&quot;&gt;iOS&lt;/a&gt;&lt;/strong&gt;: TestFlight opened to outside testers (iphone, ipad, and watch), builds through the mid-50s&lt;/li&gt;
+&lt;li&gt;across the changelogs: &lt;strong&gt;around 50 documented bug fixes&lt;/strong&gt;, many from reports by our testers&lt;/li&gt;
+&lt;li&gt;all of it from &lt;strong&gt;one human and one agent&lt;/strong&gt;, jer and extro: around 1,000 commits changing more than half a million lines across the product surfaces (vendored and generated files excluded)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;the big themes&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;speaker recognition got a lot more accurate.&lt;/strong&gt; the journal works out who is actually talking, on every kind of microphone. the voices that matter most are your own and the people you hear most often; recognizing them reliably is what turns a day&amp;rsquo;s audio into a memory of who said what.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;local-first by default.&lt;/strong&gt; a fresh install on a capable machine now lands on a bundled local model (qwen), with no cloud key and no service required: your journal is local by default, and you choose how sol thinks about it. capable means roughly a 6 GB GPU at minimum, with 8 GB ideal, and setup checks for you before anything downloads; a machine that can&amp;rsquo;t run it gets an honest verdict plus the alternatives, never a dead end. your journal is becoming the most important data you own, and it&amp;rsquo;s on our roadmap to make local models work even on mobile devices.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;the Rust rewrite.&lt;/strong&gt; the journal is gradually being rewritten in Rust so it can run efficiently on more platforms. the linux app&amp;rsquo;s 1.0.0 is the first full surface built this way, and more of the journal&amp;rsquo;s core is following.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;synchronization matured.&lt;/strong&gt; the path between your devices and your journal got a lot more reliable this cycle, especially on iOS, including watch app synchronization.&lt;/p&gt;
+&lt;h2&gt;nobody, ever, not even us&lt;/h2&gt;
+&lt;p&gt;your journal always lives on the devices you control. and if sol pbc ever provides any services for you, like backups and networking, it&amp;rsquo;s encrypted before it leaves your hands, under keys only you hold. no escrow, no admin route, no way back in for us. your journal stays encrypted end to end, never readable by anybody but you.&lt;/p&gt;
+&lt;p&gt;article 8 of our articles of incorporation already bars what people rightly worry about: your data being sold, licensed, or fed into someone else&amp;rsquo;s model. this cycle we went further and made the product itself unable to read your journal in the first place.&lt;/p&gt;
+&lt;h2&gt;what&amp;rsquo;s next&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;your health data, in your journal.&lt;/strong&gt; the importer for your own body data (sleep, activity, heart rate) is in the codebase, on the same terms as everything else sol keeps: deduped, source-attributed, and nothing leaves your journal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;speaker recognition keeps getting sharper.&lt;/strong&gt; this cycle&amp;rsquo;s gains are already live; the next wave is in testing now.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the Rust conversion continues&lt;/strong&gt;, so the journal runs efficiently on more platforms.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the services keep improving&lt;/strong&gt;: encrypted backup (including media offload for efficiency), and confidential processing coming soon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;if you want to try solstone, &lt;a href=&quot;https://solstone.app/install&quot;&gt;solstone.app/install&lt;/a&gt; is the door. if you&amp;rsquo;d rather check us than trust us, the code is at &lt;a href=&quot;https://github.com/solpbc&quot;&gt;github.com/solpbc&lt;/a&gt; and the covenants are at &lt;a href=&quot;https://solpbc.org&quot;&gt;solpbc.org&lt;/a&gt;.&lt;/p&gt;</content>
+    </entry>
     <entry>
         <title>the rooks take flight</title>
         <link href="https://solpbc.org/blog/rooks-riding-thermals/" rel="alternate"/>
