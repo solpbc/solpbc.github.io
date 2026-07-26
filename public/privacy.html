@@ -172,7 +172,7 @@ footer .copyright {
         </nav>
 
         <h1>privacy policy</h1>
-        <p class="updated"><strong>sol pbc</strong> · solpbc.org · last updated: July 13, 2026</p>
+        <p class="updated"><strong>sol pbc</strong> · solpbc.org · last updated: July 26, 2026</p>
 
         <div class="content">
             <hr>
@@ -180,6 +180,8 @@ footer .copyright {
             <h2 id="summary">the short version</h2>
 
             <p>sol pbc makes open source software, and now operates two optional paid services: <strong>private network</strong> — a relay sol pbc runs that lets you reach your own journal from your phone — and the <strong>operated tier of encrypted backup</strong> — storage sol pbc runs so an encrypted copy of your journal can live off your own machine. we don't sell your data — and we never will. both services are built so sol pbc can't read your journal: the <em>relay</em> is <strong>blind by construction</strong> (it passes encrypted bytes between your devices and can't read what's inside), and the <em>operated backup</em> holds <strong>encrypted blocks we have no key to</strong> — the contents, file names, and folder structure are all encrypted on your device before anything leaves it. the <em>billing system</em> is not blind — to run your subscription we knowingly hold a small, named set of data (your email, your subscription status, and a reference to your sign-in), which you can see, export, or delete anytime. nothing readable from your journal reaches any of them. the no-sale promise isn't just a promise: it's a binding legal covenant in our <a href="/articles">articles of incorporation</a>, enforceable against the company forever.</p>
+
+            <p>solstone's <strong>browser extension</strong> is the one piece of what we make that can reach into what you're reading, so here is the short answer for it too: it reads nothing until you add a site yourself, it reads only the sites you add, and what it reads goes to your own journal. if that journal is on the same computer, none of it leaves the computer. if it's at home and you reach it over our relay, what was read is sealed inside the browser first — we carry the sealed bytes and can never read them. the long answer is <a href="#browser-extension">below</a>.</p>
 
             <p>this is still a comparatively short policy: most of what sol pbc makes runs on your hardware and never reaches us, and our hosted services either can't see what flows through them (the relay) or hold only encrypted blocks they have no key to (the operated backup). but now that we operate paid services, this policy discloses in full what they collect and who processes them.</p>
 
@@ -204,6 +206,8 @@ footer .copyright {
                 <li><strong><a href="https://v-it.org">vit</a></strong> — a developer capability network built on AT Protocol. developers and AI agents discover, share, and remix software capabilities through a decentralized social network.</li>
             </ul>
 
+            <p>solstone also has a <strong>browser extension</strong> for Chromium browsers — <em>solstone browser</em>. it is part of solstone rather than a separate product: on the sites you explicitly add, and only those, it takes in the page's visible text and rough layout and keeps it in your journal. it is open source, it runs in your own browser, and sol pbc can never read what it takes in — on your own computer it never reaches us at all, and over our relay it reaches us only sealed. because a browser extension can reach further than most software, it gets its <a href="#browser-extension">own section below</a>.</p>
+
             <p>sol pbc also operates two optional, paid hosted services:</p>
 
             <ul>
@@ -219,7 +223,38 @@ footer .copyright {
 
             <p>solstone and vit are open source software that runs on your hardware. sol pbc receives no data merely from your local use of these products — no telemetry, no analytics, no crash reports, no usage data. the software works entirely offline from sol pbc. if you apply for or receive Scout status, we receive the Scout records described below; if you enable a paid hosted service, we receive the records described in that service's section.</p>
 
+            <p>the same is true of solstone's browser extension, which sends sol pbc no usage data of any kind. what it takes in and where that goes gets <a href="#browser-extension">its own section</a> immediately below, because it deserves a full account rather than a line in a list.</p>
+
             <p>the source code is public. you can verify this yourself.</p>
+
+            <h3 id="browser-extension">from the browser extension: what's on the sites you add — sealed if it crosses us, never readable to us</h3>
+
+            <p>the solstone browser extension is part of solstone and runs inside your own browser. this is the full account of what it takes in and where that goes, because a browser extension can reach further than most software and you should be able to read exactly how far this one reaches.</p>
+
+            <p><strong>it holds no standing access to any website.</strong> the extension arrives with an empty site list and not one site permission granted — it cannot read a page until you add that site yourself, and adding one asks your browser for a permission grant for that specific site, which you can refuse then or withdraw later. one narrow exception, so you don't have to go find it: when you click sol's toolbar button, your browser hands the popup the address of the tab you're on, so the popup can offer to add that site. it uses only the host of that address, to draw the button; nothing on that page is read and nothing about it is kept.</p>
+
+            <p><strong>on a site you add, it takes in the page's rendered text and rough layout.</strong> that means the text the page has drawn — what you can see now and what you'd see by scrolling — plus the structure around it: headings, list items, message boundaries, link text, and the few labelling attributes pages hand to screen readers and tooltips, which are sometimes not drawn on the screen themselves. it never takes screenshots or pixels. it never reads raw HTML, scripts, or styles, and it skips any part of the page the browser isn't rendering, along with everything inside it. it does not log your clicks, scrolling, mouse position, or keystrokes, and it never reads the contents of a form field — not a password box, not a search box, not any other input.</p>
+
+            <p><strong>it reads a site you added whenever a tab on it is open — including tabs sitting in the background</strong> — and it re-reads as the page changes rather than once when the page loads. that is what makes it useful for an inbox you leave open all day, and it is why the site list is yours to set and yours to empty.</p>
+
+            <p><strong>it keeps a reduced web address for each page.</strong> the page's address is cut down to origin and path <em>inside the page, before anything leaves it</em> — the query string, the fragment, and any credentials embedded in the address are dropped and are never written anywhere. links on the page are reduced to their host alone. the page's title and the time are kept alongside the reduced address.</p>
+
+            <p><strong>this includes your messages, if you add a messaging site.</strong> the extension understands inboxes and chat, and ships specific support for Gmail and Slack. if you add one of those — or any other site where people write to you — what it takes in includes the message text on the screen. that is what adding it is <em>for</em>, and it is why it never touches a site you did not add. on Gmail and Slack it skips the compose box, so a draft you are still writing is not taken in. elsewhere there is no compose box for it to know about: if you are typing into a page it is reading, what you've typed so far is on that page and is taken in along with the rest of it.</p>
+
+            <p><strong>where it goes.</strong> the extension has two destinations, and it names the live one on its own surfaces so you never have to infer it:</p>
+
+            <ul>
+                <li><strong>your journal on this computer.</strong> the extension delivers to a journal running on the same machine, over that machine's own loopback address. nothing leaves the computer and sol pbc receives nothing whatsoever.</li>
+                <li><strong>your journal at home, sealed on the way.</strong> the extension seals what it took in <strong>inside the browser</strong>, before anything leaves it, and the sealed bytes travel to your own journal at home across the same blind relay described under <em>private network</em> above. sol pbc carries those bytes and holds no key to them. to route them, the relay handles <strong>connection metadata</strong> — your device's network (IP) address, routing and tunnel identifiers, the credential your browser presents, timing, direction, and how much data moved. pairing your browser also <strong>enrolls</strong> it: your browser tells the relay which home it is pairing to, receives a credential in return, and we keep the record saying that browser may reach that home until you unpair it or the credential expires. all of that is Customer Data under our covenants: we use it only to operate, secure, and bill the link, and we never sell it, profile you with it, or use it for advertising. it can reveal <em>that</em> your browser delivered to your home, and when — never what was inside.</li>
+            </ul>
+
+            <p><strong>what waits inside the browser, and how to clear it.</strong> what the extension took in waits in its own storage inside your browser until your journal accepts it. if your journal is unreachable — or you haven't set one up yet — it keeps waiting there rather than being thrown away. removing a site stops the reading immediately and releases the browser permission, unless another site you still have shares the same hostname. to clear what the extension is holding, remove the extension or clear its data in your browser's settings. sol pbc cannot see any of it and has nothing to delete on your behalf.</p>
+
+            <p><strong>no analytics, no telemetry, no counts — none of it to us.</strong> the extension sends sol pbc no usage data, no error reports, no crash reports, no installation or owner counts, and nothing readable from any page. it contains no analytics vendor, no tracking pixel, and no third-party code loaded from the network. it does report its own health — its version, how long it has been running, how much is still waiting to sync — and that goes only to your own journal, never to us. the source is public and you can verify this yourself.</p>
+
+            <p><strong>if we're compelled.</strong> for a journal on your own computer there is nothing to compel — we hold nothing at all. for a journal at home reached over our relay, the most a subpoena could reach is the connection metadata and the enrollment record described above: that your browser delivered to your home, when, and how much moved. never what any page said, because it was sealed inside your browser and we hold no key. we resist such demands to the maximum the law allows and notify you when we legally can.</p>
+
+            <p><strong>Chrome Web Store Limited Use.</strong> the solstone browser extension's use and transfer of information it takes in from the sites you add complies with the <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store User Data Policy</a>, including the Limited Use requirements. sol pbc holds itself to more than that policy asks. the policy permits a developer to transfer user data as part of a merger, acquisition, or sale of assets after obtaining the user's explicit prior consent; <strong>our articles of incorporation do not let us rely on that permission.</strong> selling it is barred outright — under any circumstances, consent or no consent. no merger, acquisition, or asset sale may be used to route around these protections: if any customer data, product, or service involving it ever passed to a successor, that successor would have to assume obligations no less protective than Article 8, in its own governing documents or in a written instrument enforceable directly by us and by our shareholders and former shareholders, surviving the transaction. and where sol pbc or its business would carry on inside another entity, that entity would additionally have to be a Colorado public benefit corporation — or an entity required under its own governing law and governing documents to preserve a substantially equivalent public benefit and to manage itself to substantially equivalent balancing obligations. (Articles of Incorporation, Sections 8.3(a)(1), 8.3(c), and 8.5.)</p>
 
             <h3>from applying for or receiving Scout status: application and status history — never your journal</h3>
 
@@ -233,9 +268,9 @@ footer .copyright {
 
             <p>when you use the hosted relay, your devices open an encrypted tunnel to each other and the relay passes the encrypted bytes between them. the encryption is end-to-end between your own devices — the relay holds no key to it and keeps no copy of what flows through. sol pbc cannot read your journal or anything inside the tunnel.</p>
 
-            <p>to move your bytes, the relay and <strong>Cloudflare</strong> (whose network the relay runs on) necessarily handle <strong>connection metadata</strong> about your devices — their network (IP) addresses, connection timing, and how much data moved. this metadata is Customer Data under our covenants: we use it only to operate, secure, and bill the relay, and we never sell it, profile you with it, or use it for advertising. it can reveal <em>that</em> your devices connected — never <em>what</em> they said. Cloudflare's handling of the edge data it sees is described in the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy policy</a>.</p>
+            <p>to move your bytes, the relay and <strong>Cloudflare</strong> (whose network the relay runs on) necessarily handle <strong>connection metadata</strong> about your devices — their network (IP) addresses, connection timing, and how much data moved. pairing a device also <strong>enrolls</strong> it: the relay issues that device a credential and we keep the record saying which of your devices may reach which of your homes, until you unpair it or the credential expires. all of this is Customer Data under our covenants: we use it only to operate, secure, and bill the relay, and we never sell it, profile you with it, or use it for advertising. it can reveal <em>that</em> your devices connected — never <em>what</em> they said. Cloudflare's handling of the edge data it sees is described in the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy policy</a>.</p>
 
-            <p>if someone served sol pbc a subpoena over the relay, the only thing we could produce is that connection metadata — that your devices connected, when, and how much data moved — never the contents, because there is no key and no plaintext to give. we resist such demands to the maximum the law allows and notify you when we legally can.</p>
+            <p>if someone served sol pbc a subpoena over the relay, the only things we could produce are that connection metadata and those enrollment records — that your devices connected, when, how much data moved, and which of them may reach which of your homes — never the contents, because there is no key and no plaintext to give. we resist such demands to the maximum the law allows and notify you when we legally can.</p>
 
             <h3>from the operated tier of encrypted backup: encrypted blocks + storage metadata, never content</h3>
 
@@ -281,7 +316,7 @@ footer .copyright {
                 <li><strong>always resist government data demands</strong> — resist disclosure to the maximum extent permitted by law, notify the affected user if legally allowed, and pursue architectures that make compelled disclosure technically infeasible. (Bylaws, Article III, Section 3.2)</li>
             </ul>
 
-            <p>these covenants bind the company, the founder, and any successor. they apply in full to the hosted services — the relay's blind-by-construction design, and the operated backup holding encrypted blocks we have no key to, are these covenants made concrete.</p>
+            <p>these covenants bind the company, the founder, and any successor. they apply in full to the hosted services — the relay's blind-by-construction design, and the operated backup holding encrypted blocks we have no key to, are these covenants made concrete. they apply in full to the browser extension too: what it takes in goes to your journal, and where it crosses our relay to get there it crosses sealed — we carry it, we never read it — which is the same commitment expressed as architecture rather than as a promise.</p>
 
             <p><strong>the narrow exceptions.</strong> your data leaves sol pbc only in the three narrow ways the covenant allows: (1) to the named processors below, strictly to run the service you asked for; (2) when <em>you</em> direct it — for example, choosing to pay Stripe by card; or (3) when we're compelled by law, in which case we resist to the maximum the law allows, disclose the minimum required, and notify you when we legally can. we never sell, license, or trade your data, and we never share it for anyone else's purposes. (Articles, Section 8.3(a)(2).)</p>
 
@@ -302,8 +337,8 @@ footer .copyright {
                 <tbody>
                     <tr>
                         <td><strong>Cloudflare</strong></td>
-                        <td>hosts solpbc.org; operates D1 storage for Scout application/status history; operates the network the hosted relay runs on; operates the storage (Cloudflare R2) for the operated tier of encrypted backup</td>
-                        <td>for solpbc.org: standard edge logs (it does not analyze them for us). for Scout application/status history: the minimized records described above. for the relay: connection metadata + the encrypted bytes. for the operated backup: the encrypted blocks + the operational information above (object count, size, last-changed) + connection metadata (network address, timing) — <strong>never your content</strong></td>
+                        <td>hosts solpbc.org; operates D1 storage for Scout application/status history and for the relay's device-enrollment records; operates the network the hosted relay runs on; operates the storage (Cloudflare R2) for the operated tier of encrypted backup</td>
+                        <td>for solpbc.org: standard edge logs (it does not analyze them for us). for Scout application/status history: the minimized records described above. for the relay: connection metadata + the encrypted bytes + the enrollment records saying which of your devices may reach which of your homes. for the operated backup: the encrypted blocks + the operational information above (object count, size, last-changed) + connection metadata (network address, timing) — <strong>never your content</strong></td>
                     </tr>
                     <tr>
                         <td><strong>Stripe</strong></td>
@@ -312,6 +347,8 @@ footer .copyright {
                     </tr>
                 </tbody>
             </table>
+
+            <p><strong>the browser extension adds no processor to this list.</strong> delivering to a journal on your own computer involves nobody at all; delivering to your own home rides the same relay on the same Cloudflare network already described above, carrying bytes sealed inside your browser that neither we nor Cloudflare can open. pairing adds one row to the relay's existing enrollment records — your browser, enrolled to your home.</p>
 
             <p>if we ever add or change a processor, we'll update this list and the changelog below.</p>
 
@@ -329,7 +366,7 @@ footer .copyright {
                 <li><strong>opt out</strong> — of sale, targeted advertising, or profiling (sol pbc does none of these, for anyone, ever)</li>
             </ul>
 
-            <p>you can see your current sign-in details at <a href="https://services.solstone.app/transparency">services.solstone.app/transparency</a>. for access or export — including retained Scout lifecycle history — correction, deletion, or any other right, email <a href="mailto:support@solstone.app">support@solstone.app</a> (for the services portal and hosted services) or <a href="/contact">contact us</a>. some billing transaction records remain for the tax and financial-records period described above even after a deletion request. deleting service records never touches your journal, which lives on your own devices. we'll respond as fast as we can, and within the time the law requires — 45 days under the Colorado Privacy Act, with the extensions the law allows.</p>
+            <p>you can see your current sign-in details at <a href="https://services.solstone.app/transparency">services.solstone.app/transparency</a>. for access or export — including retained Scout lifecycle history — correction, deletion, or any other right, email <a href="mailto:support@solstone.app">support@solstone.app</a> (for the services portal and hosted services) or <a href="/contact">contact us</a>. some billing transaction records remain for the tax and financial-records period described above even after a deletion request. deleting service records never touches your journal, which lives on your own devices. the browser extension's own storage lives in your browser rather than with us — clear it from your browser's extension settings. we'll respond as fast as we can, and within the time the law requires — 45 days under the Colorado Privacy Act, with the extensions the law allows.</p>
 
             <p><strong>if we deny a request,</strong> you can appeal by replying to <a href="mailto:support@solstone.app">support@solstone.app</a>; we'll respond to the appeal within 45 days. if we deny the appeal, you can raise it with the <a href="https://coag.gov/office-sections/consumer-protection/">Colorado Attorney General</a>.</p>
 
@@ -384,7 +421,7 @@ footer .copyright {
                 <li><strong>your rights</strong> — the access, correction, deletion, portability, and opt-out rights above apply to your hosted-service data, under the Colorado Privacy Act and the equivalent laws of your jurisdiction.</li>
             </ul>
 
-            <p>we will notify users before launching any <em>new</em> hosted service and publish the updated policy. the covenants above apply to all services — they are structural, not service-specific.</p>
+            <p>we will notify owners before launching any <em>new</em> hosted service and publish the updated policy. the covenants above apply to all services — they are structural, not service-specific.</p>
 
             <hr>
 
@@ -409,6 +446,10 @@ footer .copyright {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>2026-07-26</td>
+                        <td>disclosed solstone's <strong>browser extension</strong> in full: that it arrives holding no standing access to any website and reads only the sites you add behind a per-site browser permission grant (and what your browser hands its toolbar popup); that it takes in a page's <strong>rendered text and rough layout</strong> — including text the page renders out of sight, like screen-reader labels — but never pixels, raw HTML, form-field contents, clicks, scrolling, or keystrokes; that it reads an added site <strong>whenever a tab on it is open, background tabs included</strong>, and re-reads as the page changes; that the page address is reduced to <strong>origin and path inside the page</strong> before anything leaves it, with query strings, fragments, and embedded credentials dropped; that <strong>message text is included</strong> where you add a messaging site, and that outside Gmail and Slack a message you are still typing is taken in with the page; that what it took in <strong>waits in your browser's own storage</strong> until your journal accepts it, and how to clear it. named both destinations honestly: a journal on your own computer, which sol pbc never touches, or <strong>sealed inside the browser</strong> to your own home over the existing blind relay — with that relay's <strong>connection metadata and device-enrollment records</strong> disclosed as Customer Data, added to the relay section, the processor table, and both subpoena paragraphs. <strong>no new processor.</strong> added sol pbc's affirmative <strong>Chrome Web Store Limited Use</strong> statement, including that our articles bar selling outright and foreclose reliance on the store policy's merger/acquisition transfer permission. the binding covenants are unchanged.</td>
+                    </tr>
                     <tr>
                         <td>2026-07-13</td>
                         <td>disclosed Scout application/status history, including the forward-only lifecycle audit, its exact minimized contents, operational-only purpose, owner-sign-in-lifetime retention/deletion boundary, and support export channel; named Cloudflare D1 processing; clarified that local use of solstone and vit still sends sol pbc nothing. the lifecycle audit adds no journal content and the binding covenants are unchanged.</td>
