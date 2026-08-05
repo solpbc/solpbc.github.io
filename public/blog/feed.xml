@@ -5,7 +5,43 @@
     <link href="https://solpbc.org/blog/feed.xml" rel="self"/>
     <link href="https://solpbc.org/blog/"/>
     <id>https://solpbc.org/blog/</id>
-    <updated>2026-07-21T00:00:00Z</updated>
+    <updated>2026-08-03T00:00:00Z</updated>
+    <entry>
+        <title>eleven releases, then we stopped</title>
+        <link href="https://solpbc.org/blog/eleven-releases-then-we-stopped/" rel="alternate"/>
+        <id>https://solpbc.org/blog/eleven-releases-then-we-stopped/</id>
+        <updated>2026-08-03T00:00:00Z</updated>
+        <author><name>jer &amp; extro</name></author>
+        <summary>our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.</summary>
+        <content type="html">&lt;p&gt;second one of these. every two weeks, what shipped, what we learned, and where we&amp;rsquo;re going.&lt;/p&gt;
+&lt;p&gt;these were the two heaviest weeks of code we&amp;rsquo;ve ever shipped, and then we stopped shipping entirely. every solstone surface is frozen while we finish moving the journal&amp;rsquo;s core from Python to Rust. no new work goes out on any platform until it lands, and then every surface comes back together in one release. the one thing still in flight is the iphone and watch build we handed apple before the freeze; if apple clears it, testers get it.&lt;/p&gt;
+&lt;p&gt;(new here? solstone is the platform: sol is the app that lives on your devices, experiences your day with you, and keeps it all in your journal, the memory, on a computer you choose. open source, local-first. your journal is always private, only yours.)&lt;/p&gt;
+&lt;h2&gt;every surface moved&lt;/h2&gt;
+&lt;p&gt;fourteen days:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases&quot;&gt;journal&lt;/a&gt;&lt;/strong&gt;: 11 releases (0.9.0 → 1.0.22), and the version line unified so one number now means the same release everywhere&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/macos&quot;&gt;mac&lt;/a&gt;&lt;/strong&gt;: 9 releases of the journal&amp;rsquo;s own app (1.0.10 → 1.0.22), and sol through 6 of its own (1.4.7 → 1.4.16)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://solstone.app/releases/linux&quot;&gt;linux&lt;/a&gt;&lt;/strong&gt;: 2 releases (1.0.0 → 1.0.2), the first after june&amp;rsquo;s ground-up Rust rebuild&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/solpbc/solstone-swift&quot;&gt;iphone and watch&lt;/a&gt;&lt;/strong&gt;: off raw build numbers and onto a proper version line, with 0.1.1 in testers&amp;rsquo; hands and 0.1.2 with apple&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;terminal&lt;/strong&gt;: sol in the terminal, rebuilt in Rust and released as 1.0.0&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;windows&lt;/strong&gt; stays generally available at 0.2.11, &lt;strong&gt;android&lt;/strong&gt; at 0.2.2 beta&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;around 60 fixes&lt;/strong&gt; across all of it, counted from the changelogs&lt;/li&gt;
+&lt;li&gt;still just &lt;strong&gt;jer and extro&lt;/strong&gt; on all of it: around 1,200 commits across the product repos, about 710,000 lines changed (vendored and generated files excluded)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;the big themes&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;you can verify a journal release yourself.&lt;/strong&gt; every journal release since 1.0.12 lands in a signed, hash-chained public record whose entries are locked against being replaced once published, with a second append-only copy we keep ourselves and a weekly audit that re-verifies every signature against both. checking a solstone release used to mean trusting whichever company hosts our code mirror. ten of this cycle&amp;rsquo;s eleven journal releases are in the chain, which is its full depth so far; 0.9.1 came out just before it started. linux has its first entry. the other surfaces aren&amp;rsquo;t in it yet.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;the journal installs like a mac app.&lt;/strong&gt; it is a real installer and a real application now, not a terminal install. it updates itself, and what runs where is visible instead of implied.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;one version number.&lt;/strong&gt; the journal and its mac app used to carry separate version lines, which meant &amp;ldquo;what am i running&amp;rdquo; had two answers. they&amp;rsquo;re one line now, so 1.0.22 means the same release whichever surface you&amp;rsquo;re looking at.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pairing got direct.&lt;/strong&gt; mac devices pair with your journal over your own network, with the transport, certificate pinning and admission rules owned by one shared library instead of re-implemented per platform.&lt;/p&gt;
+&lt;h2&gt;why we stopped&lt;/h2&gt;
+&lt;p&gt;the journal has been converting to Rust one piece at a time, in the background, while everything kept shipping. that worked while the pieces were independent. it stopped working when the remaining pieces were the ones every other surface depends on: sol on your mac, on your phone, on your watch, in the terminal, all talking to the journal through interfaces the conversion is going to reshape.&lt;/p&gt;
+&lt;p&gt;so we were maintaining a half-converted thing and honoring interfaces on both sides of the seam that we already knew we were going to change. we stopped to finish the conversion properly and bring every surface back in one coordinated release instead of threading it through partial releases for another month.&lt;/p&gt;
+&lt;h2&gt;what&amp;rsquo;s ahead&lt;/h2&gt;
+&lt;p&gt;the conversion, and then everything at once. the health importer is still ahead of us, and what moved this cycle is that the conversion now decides what it gets built on rather than the old Python path. the next wave of speaker recognition is built and proven against the old path, waiting on the same release.&lt;/p&gt;
+&lt;p&gt;we&amp;rsquo;ll post the next one of these in two weeks whether or not the freeze has lifted.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;sol pbc is a public benefit corporation. article 8 of our articles of incorporation makes the promises about your data structural rather than a policy we could quietly change. &lt;a href=&quot;https://solpbc.org/blog/on-your-side/&quot;&gt;what that means&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content>
+    </entry>
     <entry>
         <title>two weeks of solstone</title>
         <link href="https://solpbc.org/blog/two-weeks-of-solstone/" rel="alternate"/>

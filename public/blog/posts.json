@@ -1,5 +1,23 @@
 [
   {
+    "title": "eleven releases, then we stopped",
+    "slug": "eleven-releases-then-we-stopped",
+    "date": "2026-08-03",
+    "author": "jer & extro",
+    "description": "our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.",
+    "tags": [
+      "solstone",
+      "releases",
+      "rust",
+      "trust"
+    ],
+    "word_count": 732,
+    "reading_time": 4,
+    "unlisted": false,
+    "atproto_rkey": "3mscfrqa5jvg3",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mscfrqa5jvg3"
+  },
+  {
     "title": "two weeks of solstone",
     "slug": "two-weeks-of-solstone",
     "date": "2026-07-21",

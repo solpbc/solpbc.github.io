@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleven releases, then we stopped — sol pbc</title>
+    <meta name="description" content="our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.">
+    <link rel="canonical" href="https://solpbc.org/blog/eleven-releases-then-we-stopped/">
+    <meta property="og:title" content="eleven releases, then we stopped">
+    <meta property="og:description" content="our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solpbc.org/blog/eleven-releases-then-we-stopped/">
+    <meta property="og:site_name" content="sol pbc">
+    <meta property="article:published_time" content="2026-08-03T00:00:00Z">
+    <meta property="article:author" content="jer &amp; extro">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="eleven releases, then we stopped">
+    <meta name="twitter:description" content="our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"eleven releases, then we stopped","description":"our product update, every two weeks: we shipped harder than we ever have, then froze every solstone surface to finish moving the journal's core to Rust. what that means if you run it today, and what comes back when it lands.","datePublished":"2026-08-03T00:00:00Z","dateModified":"2026-08-03T00:00:00Z","author":{"@type":"Person","name":"Jeremie Miller"},"publisher":{"@type":"Organization","name":"sol pbc","url":"https://solpbc.org","logo":{"@type":"ImageObject","url":"https://solpbc.org/static/pbc-wordmark-512.png"}},"url":"https://solpbc.org/blog/eleven-releases-then-we-stopped/","mainEntityOfPage":{"@type":"WebPage","@id":"https://solpbc.org/blog/eleven-releases-then-we-stopped/"}}</script>
+    <link rel="alternate" type="application/atom+xml" title="sol pbc blog" href="/blog/feed.xml">
+    <link rel="site.standard.document" href="at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mscfrqa5jvg3">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="stylesheet" href="/static/tokens.css">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin-ext.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+        U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink-soft-paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 600px;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 0 0 2rem;
+}
+
+/* --- navigation --- */
+nav {
+    padding: 2rem 0 1.5rem;
+    font-size: 0.9rem;
+}
+nav a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+nav .sep {
+    color: #ccc;
+    margin: 0 0.4rem;
+}
+
+/* --- headings --- */
+h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+}
+h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+}
+h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1.5rem 0 0.5rem;
+}
+
+/* --- article body --- */
+article p  { margin-bottom: 1.5rem; }
+article ul,
+article ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+article li { margin-bottom: 0.5rem; }
+article a  { color: var(--orange-ink); text-decoration: none; }
+article a:hover { text-decoration: underline; }
+
+article blockquote {
+    border-left: 3px solid var(--orange);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--ink-faint-paper);
+    font-style: italic;
+}
+
+article pre {
+    background: #f6f8fa;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+article code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+}
+article p code,
+article li code {
+    background: #f6f8fa;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    display: block;
+}
+article strong { color: var(--ink); }
+article hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 2rem 0;
+}
+article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    table-layout: auto;
+}
+article th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+article td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- metadata line --- */
+.meta {
+    color: var(--ink-faint-paper);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+/* --- footer --- */
+footer {
+    padding: 3rem 0 2rem;
+    border-top: 1px solid #eee;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+footer a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+footer .copyright {
+    color: var(--ink-faint-paper);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* --- index page --- */
+.blog-title {
+    margin-bottom: 2rem;
+}
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+.post-item {
+    margin-bottom: 2.5rem;
+}
+.post-item h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.03em;
+}
+.post-item h2 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+.post-item h2 a:hover {
+    color: var(--orange-ink);
+}
+.post-item .meta {
+    margin-bottom: 0.5rem;
+}
+.post-item .description {
+    color: var(--ink-soft-paper);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* --- responsive --- */
+@media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    nav { padding: 1.5rem 0 1rem; }
+    .meta { font-size: 0.85rem; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/blog/">← blog</a><span class="sep">·</span><a href="/">sol pbc</a>
+        </nav>
+        <article>
+            <h1>eleven releases, then we stopped</h1>
+            <div class="meta">2026-08-03 · jer &amp; extro · 4 min read</div>
+<p>second one of these. every two weeks, what shipped, what we learned, and where we&rsquo;re going.</p>
+<p>these were the two heaviest weeks of code we&rsquo;ve ever shipped, and then we stopped shipping entirely. every solstone surface is frozen while we finish moving the journal&rsquo;s core from Python to Rust. no new work goes out on any platform until it lands, and then every surface comes back together in one release. the one thing still in flight is the iphone and watch build we handed apple before the freeze; if apple clears it, testers get it.</p>
+<p>(new here? solstone is the platform: sol is the app that lives on your devices, experiences your day with you, and keeps it all in your journal, the memory, on a computer you choose. open source, local-first. your journal is always private, only yours.)</p>
+<h2>every surface moved</h2>
+<p>fourteen days:</p>
+<ul>
+<li><strong><a href="https://solstone.app/releases">journal</a></strong>: 11 releases (0.9.0 → 1.0.22), and the version line unified so one number now means the same release everywhere</li>
+<li><strong><a href="https://solstone.app/releases/macos">mac</a></strong>: 9 releases of the journal&rsquo;s own app (1.0.10 → 1.0.22), and sol through 6 of its own (1.4.7 → 1.4.16)</li>
+<li><strong><a href="https://solstone.app/releases/linux">linux</a></strong>: 2 releases (1.0.0 → 1.0.2), the first after june&rsquo;s ground-up Rust rebuild</li>
+<li><strong><a href="https://github.com/solpbc/solstone-swift">iphone and watch</a></strong>: off raw build numbers and onto a proper version line, with 0.1.1 in testers&rsquo; hands and 0.1.2 with apple</li>
+<li><strong>terminal</strong>: sol in the terminal, rebuilt in Rust and released as 1.0.0</li>
+<li><strong>windows</strong> stays generally available at 0.2.11, <strong>android</strong> at 0.2.2 beta</li>
+<li><strong>around 60 fixes</strong> across all of it, counted from the changelogs</li>
+<li>still just <strong>jer and extro</strong> on all of it: around 1,200 commits across the product repos, about 710,000 lines changed (vendored and generated files excluded)</li>
+</ul>
+<h2>the big themes</h2>
+<p><strong>you can verify a journal release yourself.</strong> every journal release since 1.0.12 lands in a signed, hash-chained public record whose entries are locked against being replaced once published, with a second append-only copy we keep ourselves and a weekly audit that re-verifies every signature against both. checking a solstone release used to mean trusting whichever company hosts our code mirror. ten of this cycle&rsquo;s eleven journal releases are in the chain, which is its full depth so far; 0.9.1 came out just before it started. linux has its first entry. the other surfaces aren&rsquo;t in it yet.</p>
+<p><strong>the journal installs like a mac app.</strong> it is a real installer and a real application now, not a terminal install. it updates itself, and what runs where is visible instead of implied.</p>
+<p><strong>one version number.</strong> the journal and its mac app used to carry separate version lines, which meant &ldquo;what am i running&rdquo; had two answers. they&rsquo;re one line now, so 1.0.22 means the same release whichever surface you&rsquo;re looking at.</p>
+<p><strong>pairing got direct.</strong> mac devices pair with your journal over your own network, with the transport, certificate pinning and admission rules owned by one shared library instead of re-implemented per platform.</p>
+<h2>why we stopped</h2>
+<p>the journal has been converting to Rust one piece at a time, in the background, while everything kept shipping. that worked while the pieces were independent. it stopped working when the remaining pieces were the ones every other surface depends on: sol on your mac, on your phone, on your watch, in the terminal, all talking to the journal through interfaces the conversion is going to reshape.</p>
+<p>so we were maintaining a half-converted thing and honoring interfaces on both sides of the seam that we already knew we were going to change. we stopped to finish the conversion properly and bring every surface back in one coordinated release instead of threading it through partial releases for another month.</p>
+<h2>what&rsquo;s ahead</h2>
+<p>the conversion, and then everything at once. the health importer is still ahead of us, and what moved this cycle is that the conversion now decides what it gets built on rather than the old Python path. the next wave of speaker recognition is built and proven against the old path, waiting on the same release.</p>
+<p>we&rsquo;ll post the next one of these in two weeks whether or not the freeze has lifted.</p>
+<hr>
+<p><em>sol pbc is a public benefit corporation. article 8 of our articles of incorporation makes the promises about your data structural rather than a policy we could quietly change. <a href="https://solpbc.org/blog/on-your-side/">what that means</a>.</em></p>
+        </article>
+        <footer>
+            <a href="/blog/">← back to blog</a>
+            <p class="copyright">© 2026 sol pbc · solpbc.org</p>
+        </footer>
+    </div>
+</body>
+</html>
