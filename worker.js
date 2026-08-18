@@ -329,6 +329,11 @@ export default {
       return redirect('/talks/2026-05-05-demo-day', 302);
     }
 
+    // /brand/mark → moved to /brands/mark (misfiled 2026-08-17, corrected 2026-08-18).
+    if (url.pathname === '/brand/mark') {
+      return redirect('/brands/mark', 301);
+    }
+
     // /brands and /brands.html → canonical /brands/ (the clean-URL handler
     // only tries .html and would not dir-index /brands). 301 — build spec §5.6.
     if (url.pathname === '/brands' || url.pathname === '/brands.html') {
