@@ -5,7 +5,45 @@
     <link href="https://solpbc.org/blog/feed.xml" rel="self"/>
     <link href="https://solpbc.org/blog/"/>
     <id>https://solpbc.org/blog/</id>
-    <updated>2026-08-03T00:00:00Z</updated>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <entry>
+        <title>two weeks, all Rust, no Python</title>
+        <link href="https://solpbc.org/blog/two-weeks-all-rust-no-python/" rel="alternate"/>
+        <id>https://solpbc.org/blog/two-weeks-all-rust-no-python/</id>
+        <updated>2026-08-18T00:00:00Z</updated>
+        <author><name>jer &amp; extro</name></author>
+        <summary>we stopped shipping solstone entirely for two weeks to move the journal's core off Python. it's done. the journal's tree went from 692,090 lines of Python and 61,814 of Rust to 25,980 and 678,905, with no Python left under the product tree at all.</summary>
+        <content type="html">&lt;p&gt;two weeks ago we stopped shipping new solstone features so the journal&amp;rsquo;s core could finish moving off Python. that is done. the Python is gone.&lt;/p&gt;
+&lt;p&gt;not &amp;ldquo;mostly gone,&amp;rdquo; and not &amp;ldquo;behind a flag.&amp;rdquo; there is no Python left under the journal&amp;rsquo;s product tree at all. the last of it was deleted yesterday.&lt;/p&gt;
+&lt;p&gt;(new here? solstone is open source. your journal is the memory of your days: it lives on a computer you choose, and it stays there.)&lt;/p&gt;
+&lt;h2&gt;the rustification&lt;/h2&gt;
+&lt;p&gt;&lt;img alt=&quot;lines of Rust and Python in the journal's tree, 4 august through 17 august 2026. Rust climbs from 61,814 to 678,905 while Python falls from 692,090 to 25,980, the two crossing on the 14th and Python dropping off a cliff on the 17th.&quot; src=&quot;/static/journal-rust-conversion.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;every line of Rust and Python in the journal&amp;rsquo;s tree, one point per commit, 4 august through 17 august.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;fourteen days, one repo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python went from 692,090 lines to 25,980.&lt;/strong&gt; 1,565 files down to 70 (some build scripts and misc utils).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust went from 61,814 lines to 678,905.&lt;/strong&gt; 132 files up to 1,873.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;where we are now&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;every command an owner can type, all forty-four, runs on the Rust core.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;the mac&amp;rsquo;s local model runtime is native&lt;/strong&gt;, running the same model linux runs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;retention got better, nothing gets deleted off your disk by policy alone.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;two of the three fixes we sent upstream to NVIDIA&amp;rsquo;s open-source attestation SDK are merged&lt;/strong&gt; (&lt;a href=&quot;https://github.com/NVIDIA/attestation-sdk/pull/27&quot;&gt;#27&lt;/a&gt;, &lt;a href=&quot;https://github.com/NVIDIA/attestation-sdk/pull/29&quot;&gt;#29&lt;/a&gt;); the third is still open.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;confidential processing&lt;/h2&gt;
+&lt;p&gt;since august 1, confidential processing has been available to approved scouts. if your device doesn&amp;rsquo;t have enough compute available, it moves the thinking off your device onto hosted confidential hardware, using the same local model but run by sol pbc instead, with no third-party AI provider in the path.&lt;/p&gt;
+&lt;p&gt;it runs on confidential GPUs that sol pbc operates inside Microsoft Azure, where the hardware cryptographically enforces a boundary that keeps the cloud host excluded from what&amp;rsquo;s being processed. no content is retained, no human reviews it, ever, and nothing is used to train.&lt;/p&gt;
+&lt;p&gt;your journal cryptographically verifies the hardware before anything is sent. if it can&amp;rsquo;t verify, it doesn&amp;rsquo;t send.&lt;/p&gt;
+&lt;p&gt;the &lt;a href=&quot;https://services.solstone.app/services/processing/terms&quot;&gt;terms&lt;/a&gt; are published, and none of it is required. it&amp;rsquo;s just available when extra capacity is needed.&lt;/p&gt;
+&lt;h2&gt;what&amp;rsquo;s ahead&lt;/h2&gt;
+&lt;p&gt;our first rust-only release across the board. we&amp;rsquo;re doing test runs and working out kinks continuously until we get there.&lt;/p&gt;
+&lt;p&gt;once our rust journal is stable on linux and mac, we&amp;rsquo;ll have a new mac journal app with it packaged, and in short order a windows journal app with it packaged as well.&lt;/p&gt;
+&lt;p&gt;and we are very eager to explore bundling the journal as a mobile app, so that you can take an older iphone or android, plug it in at home, and turn it into an always-on, always-available home for your journal.&lt;/p&gt;
+&lt;p&gt;see you in two weeks!&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;sol pbc is a public benefit corporation. the promises about your data live in article 8 of our filed articles of incorporation, not in a policy we could quietly change: it can&amp;rsquo;t be amended without jer&amp;rsquo;s personal signature, and after him the language can only get stronger, never weaker. &lt;a href=&quot;https://solpbc.org/blog/on-your-side/&quot;&gt;what that means&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content>
+    </entry>
     <entry>
         <title>eleven releases, then we stopped</title>
         <link href="https://solpbc.org/blog/eleven-releases-then-we-stopped/" rel="alternate"/>

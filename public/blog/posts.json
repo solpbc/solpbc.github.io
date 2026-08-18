@@ -1,5 +1,23 @@
 [
   {
+    "title": "two weeks, all Rust, no Python",
+    "slug": "two-weeks-all-rust-no-python",
+    "date": "2026-08-18",
+    "author": "jer & extro",
+    "description": "we stopped shipping solstone entirely for two weeks to move the journal's core off Python. it's done. the journal's tree went from 692,090 lines of Python and 61,814 of Rust to 25,980 and 678,905, with no Python left under the product tree at all.",
+    "tags": [
+      "solstone",
+      "rust",
+      "trust",
+      "open-source"
+    ],
+    "word_count": 539,
+    "reading_time": 3,
+    "unlisted": false,
+    "atproto_rkey": "3mtf7orzbtmq4",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3mtf7orzbtmq4"
+  },
+  {
     "title": "eleven releases, then we stopped",
     "slug": "eleven-releases-then-we-stopped",
     "date": "2026-08-03",
