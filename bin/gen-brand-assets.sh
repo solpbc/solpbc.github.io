@@ -11,6 +11,8 @@
 # Build spec: cmo/workspace/brand-portal-build-spec-260518.md §5.4.
 #
 # Source of truth for the SVGs is the (private) extro repo's cmo/brand/ tree.
+# solstone/ is the ruled mark family; sol/ retains only pbc-wordmark* (the
+# company wordmark, founder-deferred) — see that tree's README.
 # Override with BRAND_SRC=/abs/path if it is not the sibling default.
 #
 # Renderer: the spec names `rsvg-convert` (librsvg). librsvg2-tools is not
@@ -21,7 +23,7 @@
 # PNGs natively at the target size (never downsample — founder rule,
 # cmo/brand/sol/index.md § rendering rule) and both emit true-vector PDFs
 # (zero raster image rows under `pdfimages -list` — acceptance gate §7.6).
-# The portal's sol assets (pbc-wordmark, sol-wordmark, sol-ring + white
+# The portal's sol pbc + solstone assets (pbc-wordmark, mark + white/black
 # variants) have no per-size hand-tuned source, so a uniform native render
 # satisfies the rule for every brand identically.
 set -eu
@@ -43,16 +45,14 @@ MANIFEST="
 sol-pbc   pbc-wordmark        sol/pbc-wordmark.svg
 sol-pbc   pbc-wordmark-white  sol/pbc-wordmark-white.svg
 sol-pbc   pbc-wordmark-black  sol/pbc-wordmark-black.svg
-sol-pbc   sol-ring            sol/sol-ring.svg
-solstone  sol-wordmark        sol/sol-wordmark.svg
-solstone  sol-wordmark-white  sol/sol-wordmark-white.svg
-solstone  sol-wordmark-black  sol/sol-wordmark-black.svg
-solstone  sol-ring            sol/sol-ring.svg
-solstone  sol-app-icon-cream-squircle  sol/app-icon/sol-app-icon-cream-squircle.svg
-solstone  sol-app-icon-cream        sol/app-icon/sol-app-icon-cream.svg
-solstone  sol-app-icon-transparent  sol/app-icon/sol-app-icon-transparent.svg
-solstone  sol-lockup-solstone-app             sol/sol-lockup-solstone-app.svg
-solstone  sol-lockup-solstone-app-white       sol/sol-lockup-solstone-app-white.svg
+solstone  mark                solstone/mark.svg
+solstone  mark-white          solstone/mark-white.svg
+solstone  mark-black          solstone/mark-black.svg
+solstone  app-icon-cream-squircle   solstone/app-icon/app-icon-cream-squircle.svg
+solstone  app-icon-cream            solstone/app-icon/app-icon-cream.svg
+solstone  app-icon-transparent      solstone/app-icon/app-icon-transparent.svg
+solstone  lockup-solstone-app                 solstone/lockup-solstone-app.svg
+solstone  lockup-solstone-app-white           solstone/lockup-solstone-app-white.svg
 vit       vit-mark            vit/vit-mark.svg
 vit       vit-mark-dark       vit/vit-mark-dark.svg
 vit       vit-mark-white      vit/vit-mark-white.svg
@@ -197,12 +197,12 @@ done
 # (white) masters straight into solstone/qr/ at their authored sizes; they
 # ride solstone.zip + the global zip via the directory include below, and the
 # mtime-pin (find ... touch, further down) keeps the zips deterministic.
-QR_SRC="$BRAND_SRC/sol/qr"
+QR_SRC="$BRAND_SRC/solstone/qr"
 QR_OUT="$OUT/solstone/qr"
 mkdir -p "$QR_OUT"
-for f in "sol-qr-solstone-app.svg" \
-         "png/sol-qr-cream-512.png"  "png/sol-qr-cream-1024.png"  "png/sol-qr-cream-2048.png" \
-         "png/sol-qr-white-512.png"  "png/sol-qr-white-1024.png"  "png/sol-qr-white-2048.png"; do
+for f in "qr-solstone-app.svg" \
+         "png/qr-cream-512.png"  "png/qr-cream-1024.png"  "png/qr-cream-2048.png" \
+         "png/qr-white-512.png"  "png/qr-white-1024.png"  "png/qr-white-2048.png"; do
   if [ ! -f "$QR_SRC/$f" ]; then
     echo "gen-brand-assets: missing QR source $QR_SRC/$f" >&2
     exit 1
