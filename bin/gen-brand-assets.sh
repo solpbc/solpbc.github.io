@@ -17,7 +17,7 @@
 #
 # Renderer: the spec names `rsvg-convert` (librsvg). librsvg2-tools is not
 # installed in this environment (only the library, not the CLI; magick is also
-# absent so cmo/brand/sol/export-pngs.sh cannot be reused). We therefore prefer
+# absent so cmo/brand/archive/sol/export-pngs.sh cannot be reused). We therefore prefer
 # rsvg-convert when present and otherwise fall back to cairosvg in a
 # self-bootstrapped local venv. Both are Cairo-family renderers; both render
 # PNGs natively at the target size (never downsample — founder rule,
