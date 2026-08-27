@@ -212,8 +212,12 @@ done
 echo "  solstone/qr  (svg + cream/white png 512/1024/2048, not laddered)"
 
 # --- deterministic zips -----------------------------------------------------
-# Pin every generated file's mtime, then zip from a sorted file list with
-# -X (no extra attrs). Same inputs -> byte-identical zip -> no git churn.
+# Pin every generated file's mode and mtime, then zip from a sorted file list
+# with -X (no extra attrs). zip stores Unix permissions in its central
+# directory regardless of -X, so an unpinned mode bit churns the zip on every
+# run whose umask differs, even with content and mtime both pinned.
+# Same inputs -> byte-identical zip -> no git churn.
+find "$OUT" -type f -exec chmod 644 {} +
 find "$OUT" -type f -exec touch -d "$EPOCH" {} +
 
 build_zip() {
