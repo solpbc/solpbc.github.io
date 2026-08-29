@@ -10,6 +10,15 @@
 #
 # Build spec: cmo/workspace/brand-portal-build-spec-260518.md §5.4.
 #
+# `make deploy` runs this unconditionally on every deploy, for any reason —
+# so a content-hash gate below skips regeneration when BRAND_SRC hasn't
+# changed since the last successful run. Set FORCE_BRAND_REGEN=1 to bypass it
+# (e.g. after a change to this script's own output, with no source SVG
+# change). cto/requests/260828-gate-cmo-brand-solstone-republication-on-make-deploy-to-only.md
+# (CMO, req_jidh6pah): a tokens.css deploy had republished the whole app-icon
+# set for an unrelated reason, bypassing CMO's Approve gate on brand publish
+# via the build graph rather than a decision.
+#
 # Source of truth for the SVGs is the (private) extro repo's cmo/brand/ tree.
 # solstone/ is the ruled mark family; sol/ retains only pbc-wordmark* (the
 # company wordmark, founder-deferred) — see that tree's README.
@@ -36,6 +45,19 @@ if [ ! -d "$BRAND_SRC" ]; then
   echo "gen-brand-assets: brand source not found: $BRAND_SRC" >&2
   echo "  set BRAND_SRC=/abs/path/to/extro/cmo/brand and re-run." >&2
   exit 1
+fi
+
+# --- change gate -------------------------------------------------------
+# Hash every file under BRAND_SRC (path + content, so an add/remove/rename
+# counts as a change) and compare against the stamp from the last successful
+# run. Unchanged -> skip regeneration entirely; this is what makes an
+# unrelated `make deploy` a no-op for brand output.
+STAMP="$REPO/bin/.brand-src-hash"
+NEW_HASH="$(find "$BRAND_SRC" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)"
+if [ "${FORCE_BRAND_REGEN:-}" != "1" ] && [ -f "$STAMP" ] && [ -d "$OUT" ] && [ "$(cat "$STAMP")" = "$NEW_HASH" ]; then
+  echo "gen-brand-assets: BRAND_SRC unchanged since last run ($NEW_HASH) — skipping regeneration."
+  echo "  set FORCE_BRAND_REGEN=1 to force."
+  exit 0
 fi
 
 # --- asset manifest ---------------------------------------------------------
@@ -235,6 +257,8 @@ build_zip rooks.zip    rooks
 # Global zip = union of all brands (zips live at $OUT root, not under the
 # brand dirs, so they are never recursively included in one another).
 build_zip sol-pbc-brand-all.zip sol-pbc solstone vit rooks
+
+echo "$NEW_HASH" > "$STAMP"
 
 echo "gen-brand-assets: done -> $OUT"
 ( cd "$OUT" && ls -1 *.zip )
