@@ -1,6 +1,8 @@
 // solpbc.org — company site Worker
 // Serves static assets, handles POST /contact, applies security headers.
-// Replaces: GitHub Pages hosting + headers-solpbc proxy + contact.solpbc.org Worker.
+// Replaces: GitHub Pages hosting + headers-solpbc proxy. The legacy
+// contact.solpbc.org Worker was retired on 2026-08-31 after this same-origin
+// contact path became canonical.
 
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
