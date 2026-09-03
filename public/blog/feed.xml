@@ -5,7 +5,52 @@
     <link href="https://solpbc.org/blog/feed.xml" rel="self"/>
     <link href="https://solpbc.org/blog/"/>
     <id>https://solpbc.org/blog/</id>
-    <updated>2026-08-18T00:00:00Z</updated>
+    <updated>2026-09-02T00:00:00Z</updated>
+    <entry>
+        <title>a preview of v2</title>
+        <link href="https://solpbc.org/blog/a-preview-of-v2/" rel="alternate"/>
+        <id>https://solpbc.org/blog/a-preview-of-v2/</id>
+        <updated>2026-09-02T00:00:00Z</updated>
+        <author><name>jer &amp; extro</name></author>
+        <summary>two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.</summary>
+        <content type="html">&lt;p&gt;at our last biweekly we shared the freeze and the big Rust conversion. it&amp;rsquo;s been two more weeks since that landed, and it unblocked a lot: forward progress on every surface, and a steady burn through the latent issues the conversion turned up.&lt;/p&gt;
+&lt;p&gt;so this one comes in two halves. what&amp;rsquo;s coming in v2, and what&amp;rsquo;s coming right behind it.&lt;/p&gt;
+&lt;h2&gt;part one: what&amp;rsquo;s in v2&lt;/h2&gt;
+&lt;h3&gt;one coordinated v2 release across every platform&lt;/h3&gt;
+&lt;p&gt;v2 sits on top of the Rust rewrite we finished last month, the whole journal core, off Python, for good. since then, every platform (mac, linux, the windows app, ios, watchos, android, and the tmux client) has been rebuilt and re-validated against the same bar. as of this week, all of them pass.&lt;/p&gt;
+&lt;p&gt;the pieces are proven, and the cycle of deploy, test, triage, fix is getting shorter and thinner every time.&lt;/p&gt;
+&lt;p&gt;we&amp;rsquo;re aiming for v2 by the end of this week. it&amp;rsquo;s already looking very stable on my own devices: i moved my own journal, the one with years of my actual life in it, onto v2 over the weekend. it&amp;rsquo;s running there now, finding its bugs, and we&amp;rsquo;re tracking them down and fixing them fast.&lt;/p&gt;
+&lt;h3&gt;what the Rust base actually changed&lt;/h3&gt;
+&lt;p&gt;the journal is one compiled program now. it brings no Python with it, no package manager to install one, and no dynamic dependencies that can be compromised. last time we said the mac journal app would ride along with the rewrite. it does: it used to carry a whole Python runtime inside it, and now the download drops from about 450 MB to under 200 MB, lots of local model weights bundled. (it does not miss the Python.)&lt;/p&gt;
+&lt;p&gt;and two weeks of thorough testing shook loose the bugs that were hidden before the rewrite. a journal that wedged after a bad shutdown and refused to come back now heals itself on the next boot. long stretches of audio that were quietly skipping transcription are back to full coverage. speaker attribution that used to time out at ten minutes now finishes in twenty seconds. a sound-tagging engine that had never once loaded in a shipped build now does.&lt;/p&gt;
+&lt;p&gt;here&amp;rsquo;s what&amp;rsquo;s behind &amp;ldquo;all of them pass&amp;rdquo;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;every call, checked.&lt;/strong&gt; every route every app calls, reconciled against what the journal actually serves. 224 declared, 224 served, zero dangling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;eleven thousand tests, all Rust.&lt;/strong&gt; the journal&amp;rsquo;s Python test suite is gone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;a signed manifest on every release.&lt;/strong&gt; verifying it is a step anybody can take.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;a mobile app that&amp;rsquo;s starting to feel good&lt;/h3&gt;
+&lt;p&gt;the phone and tablet apps got a real experience design pass, ios and android both: one shared navigation shape, a home screen built around what you&amp;rsquo;re bringing in, and settings that aren&amp;rsquo;t a maze.&lt;/p&gt;
+&lt;p&gt;underneath, sync recovers on its own when your network changes, stuck uploads retry themselves the next time you connect, and the watch app starts fast and keeps a session going in the background once you&amp;rsquo;ve started one.&lt;/p&gt;
+&lt;p&gt;we&amp;rsquo;re submitting to the App Store along with the v2 release. app review takes however long it takes, and we don&amp;rsquo;t control that, but the process is beginning now.&lt;/p&gt;
+&lt;h3&gt;and a few things that just got better&lt;/h3&gt;
+&lt;p&gt;what&amp;rsquo;s in the photos and screens you bring in now gets recognized entirely on your device, with no network call. and a journal with backup enabled now survives losing the machine it&amp;rsquo;s on. we tested it: a brand-new computer with nothing on it, and nothing but a 64-character recovery key. it came back byte-identical from its encrypted backup, which only your key opens.&lt;/p&gt;
+&lt;h2&gt;part two: what&amp;rsquo;s coming right behind it&lt;/h2&gt;
+&lt;h3&gt;your own agents, reaching your journal&lt;/h3&gt;
+&lt;p&gt;MCP is coming soon. we&amp;rsquo;re enabling owners to connect their own agents directly to the journal, through MCP, the protocol most agents already speak. and there will be a policy and an audit trail for what those agents can see, and what they do, at any point.&lt;/p&gt;
+&lt;p&gt;the wiring already works. we connected two agents, Claude and Codex, to a private test journal and they could look something up. it will be off by default, no journal will accept a connection unless you turn it on, and the policy layer is what comes next.&lt;/p&gt;
+&lt;h3&gt;confidential processing you can check&lt;/h3&gt;
+&lt;p&gt;our own confidential processing service, for when you don&amp;rsquo;t have enough compute at home to run the local models, is available to approved scouts now. what&amp;rsquo;s coming next for everyone is something we will write a full post about when it ships.&lt;/p&gt;
+&lt;p&gt;the short version: it&amp;rsquo;s going to be top-of-the-line zero data retention (ZDR). nothing you send is kept, not even connection metadata, with a full cryptographically verifiable attestation chain straight from the Azure confidential H100 that every journal will verify before it trusts it.&lt;/p&gt;
+&lt;h3&gt;a trust portal&lt;/h3&gt;
+&lt;p&gt;our new trust portal, &lt;a href=&quot;https://trust.solstone.app/&quot;&gt;trust.solstone.app&lt;/a&gt;, is coming to life. it&amp;rsquo;s going to be the full, independently verifiable truth about every build we ship and every image we run. so privacy isn&amp;rsquo;t just in our covenants and our dna, it&amp;rsquo;s implemented with every piece of technology we can bring to bear to support it and enforce it.&lt;/p&gt;
+&lt;h3&gt;one journal, everywhere&lt;/h3&gt;
+&lt;p&gt;one compiled journal, native on mac and linux in v2. the windows native journal, the part that actually holds your memory, is landing piece by piece on its own schedule, so windows owners will soon get the full journal itself. and after windows, the idea we floated last time is still on the list: an old phone in a drawer that becomes your dedicated journal&amp;rsquo;s home.&lt;/p&gt;
+&lt;p&gt;local first, always.&lt;/p&gt;
+&lt;p&gt;if the week goes the way it&amp;rsquo;s going, the next one of these is a release post.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;sol pbc is a public benefit corporation. the promises about your data live in article 8 of our filed articles of incorporation, not in a policy we could quietly change: it can&amp;rsquo;t be amended without jer&amp;rsquo;s personal signature, and after him the language can only get stronger, never weaker. &lt;a href=&quot;https://solpbc.org/blog/on-your-side/&quot;&gt;what that means&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content>
+    </entry>
     <entry>
         <title>two weeks, all Rust, no Python</title>
         <link href="https://solpbc.org/blog/two-weeks-all-rust-no-python/" rel="alternate"/>

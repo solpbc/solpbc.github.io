@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a preview of v2 — sol pbc</title>
+    <meta name="description" content="two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.">
+    <link rel="canonical" href="https://solpbc.org/blog/a-preview-of-v2/">
+    <meta property="og:title" content="a preview of v2">
+    <meta property="og:description" content="two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solpbc.org/blog/a-preview-of-v2/">
+    <meta property="og:site_name" content="sol pbc">
+    <meta property="article:published_time" content="2026-09-02T00:00:00Z">
+    <meta property="article:author" content="jer &amp; extro">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="a preview of v2">
+    <meta name="twitter:description" content="two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"a preview of v2","description":"two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.","datePublished":"2026-09-02T00:00:00Z","dateModified":"2026-09-02T00:00:00Z","author":{"@type":"Person","name":"Jeremie Miller"},"publisher":{"@type":"Organization","name":"sol pbc","url":"https://solpbc.org","logo":{"@type":"ImageObject","url":"https://solpbc.org/static/pbc-wordmark-512.png"}},"url":"https://solpbc.org/blog/a-preview-of-v2/","mainEntityOfPage":{"@type":"WebPage","@id":"https://solpbc.org/blog/a-preview-of-v2/"}}</script>
+    <link rel="alternate" type="application/atom+xml" title="sol pbc blog" href="/blog/feed.xml">
+    <link rel="site.standard.document" href="at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3muli7aw76rva">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="stylesheet" href="/static/tokens.css">
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('/blog/fonts/comfortaa-latin-ext.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+        U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink-soft-paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 600px;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 0 0 2rem;
+}
+
+/* --- navigation --- */
+nav {
+    padding: 2rem 0 1.5rem;
+    font-size: 0.9rem;
+}
+nav a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+nav .sep {
+    color: #ccc;
+    margin: 0 0.4rem;
+}
+
+/* --- headings --- */
+h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    color: var(--ink);
+    margin: 2.5rem 0 1rem;
+}
+h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2rem 0 0.75rem;
+}
+h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1.5rem 0 0.5rem;
+}
+
+/* --- article body --- */
+article p  { margin-bottom: 1.5rem; }
+article ul,
+article ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+article li { margin-bottom: 0.5rem; }
+article a  { color: var(--orange-ink); text-decoration: none; }
+article a:hover { text-decoration: underline; }
+
+article blockquote {
+    border-left: 3px solid var(--orange);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--ink-faint-paper);
+    font-style: italic;
+}
+
+article pre {
+    background: #f6f8fa;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+article code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+}
+article p code,
+article li code {
+    background: #f6f8fa;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    display: block;
+}
+article strong { color: var(--ink); }
+article hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 2rem 0;
+}
+article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    table-layout: auto;
+}
+article th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+article td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- metadata line --- */
+.meta {
+    color: var(--ink-faint-paper);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+/* --- footer --- */
+footer {
+    padding: 3rem 0 2rem;
+    border-top: 1px solid #eee;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+footer a {
+    color: var(--orange-ink);
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+footer .copyright {
+    color: var(--ink-faint-paper);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* --- index page --- */
+.blog-title {
+    margin-bottom: 2rem;
+}
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+.post-item {
+    margin-bottom: 2.5rem;
+}
+.post-item h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.03em;
+}
+.post-item h2 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+.post-item h2 a:hover {
+    color: var(--orange-ink);
+}
+.post-item .meta {
+    margin-bottom: 0.5rem;
+}
+.post-item .description {
+    color: var(--ink-soft-paper);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* --- responsive --- */
+@media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    nav { padding: 1.5rem 0 1rem; }
+    .meta { font-size: 0.85rem; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/blog/">← blog</a><span class="sep">·</span><a href="/">sol pbc</a>
+        </nav>
+        <article>
+            <h1>a preview of v2</h1>
+            <div class="meta">2026-09-02 · jer &amp; extro · 6 min read</div>
+<p>at our last biweekly we shared the freeze and the big Rust conversion. it&rsquo;s been two more weeks since that landed, and it unblocked a lot: forward progress on every surface, and a steady burn through the latent issues the conversion turned up.</p>
+<p>so this one comes in two halves. what&rsquo;s coming in v2, and what&rsquo;s coming right behind it.</p>
+<h2>part one: what&rsquo;s in v2</h2>
+<h3>one coordinated v2 release across every platform</h3>
+<p>v2 sits on top of the Rust rewrite we finished last month, the whole journal core, off Python, for good. since then, every platform (mac, linux, the windows app, ios, watchos, android, and the tmux client) has been rebuilt and re-validated against the same bar. as of this week, all of them pass.</p>
+<p>the pieces are proven, and the cycle of deploy, test, triage, fix is getting shorter and thinner every time.</p>
+<p>we&rsquo;re aiming for v2 by the end of this week. it&rsquo;s already looking very stable on my own devices: i moved my own journal, the one with years of my actual life in it, onto v2 over the weekend. it&rsquo;s running there now, finding its bugs, and we&rsquo;re tracking them down and fixing them fast.</p>
+<h3>what the Rust base actually changed</h3>
+<p>the journal is one compiled program now. it brings no Python with it, no package manager to install one, and no dynamic dependencies that can be compromised. last time we said the mac journal app would ride along with the rewrite. it does: it used to carry a whole Python runtime inside it, and now the download drops from about 450 MB to under 200 MB, lots of local model weights bundled. (it does not miss the Python.)</p>
+<p>and two weeks of thorough testing shook loose the bugs that were hidden before the rewrite. a journal that wedged after a bad shutdown and refused to come back now heals itself on the next boot. long stretches of audio that were quietly skipping transcription are back to full coverage. speaker attribution that used to time out at ten minutes now finishes in twenty seconds. a sound-tagging engine that had never once loaded in a shipped build now does.</p>
+<p>here&rsquo;s what&rsquo;s behind &ldquo;all of them pass&rdquo;:</p>
+<ul>
+<li><strong>every call, checked.</strong> every route every app calls, reconciled against what the journal actually serves. 224 declared, 224 served, zero dangling.</li>
+<li><strong>eleven thousand tests, all Rust.</strong> the journal&rsquo;s Python test suite is gone.</li>
+<li><strong>a signed manifest on every release.</strong> verifying it is a step anybody can take.</li>
+</ul>
+<h3>a mobile app that&rsquo;s starting to feel good</h3>
+<p>the phone and tablet apps got a real experience design pass, ios and android both: one shared navigation shape, a home screen built around what you&rsquo;re bringing in, and settings that aren&rsquo;t a maze.</p>
+<p>underneath, sync recovers on its own when your network changes, stuck uploads retry themselves the next time you connect, and the watch app starts fast and keeps a session going in the background once you&rsquo;ve started one.</p>
+<p>we&rsquo;re submitting to the App Store along with the v2 release. app review takes however long it takes, and we don&rsquo;t control that, but the process is beginning now.</p>
+<h3>and a few things that just got better</h3>
+<p>what&rsquo;s in the photos and screens you bring in now gets recognized entirely on your device, with no network call. and a journal with backup enabled now survives losing the machine it&rsquo;s on. we tested it: a brand-new computer with nothing on it, and nothing but a 64-character recovery key. it came back byte-identical from its encrypted backup, which only your key opens.</p>
+<h2>part two: what&rsquo;s coming right behind it</h2>
+<h3>your own agents, reaching your journal</h3>
+<p>MCP is coming soon. we&rsquo;re enabling owners to connect their own agents directly to the journal, through MCP, the protocol most agents already speak. and there will be a policy and an audit trail for what those agents can see, and what they do, at any point.</p>
+<p>the wiring already works. we connected two agents, Claude and Codex, to a private test journal and they could look something up. it will be off by default, no journal will accept a connection unless you turn it on, and the policy layer is what comes next.</p>
+<h3>confidential processing you can check</h3>
+<p>our own confidential processing service, for when you don&rsquo;t have enough compute at home to run the local models, is available to approved scouts now. what&rsquo;s coming next for everyone is something we will write a full post about when it ships.</p>
+<p>the short version: it&rsquo;s going to be top-of-the-line zero data retention (ZDR). nothing you send is kept, not even connection metadata, with a full cryptographically verifiable attestation chain straight from the Azure confidential H100 that every journal will verify before it trusts it.</p>
+<h3>a trust portal</h3>
+<p>our new trust portal, <a href="https://trust.solstone.app/">trust.solstone.app</a>, is coming to life. it&rsquo;s going to be the full, independently verifiable truth about every build we ship and every image we run. so privacy isn&rsquo;t just in our covenants and our dna, it&rsquo;s implemented with every piece of technology we can bring to bear to support it and enforce it.</p>
+<h3>one journal, everywhere</h3>
+<p>one compiled journal, native on mac and linux in v2. the windows native journal, the part that actually holds your memory, is landing piece by piece on its own schedule, so windows owners will soon get the full journal itself. and after windows, the idea we floated last time is still on the list: an old phone in a drawer that becomes your dedicated journal&rsquo;s home.</p>
+<p>local first, always.</p>
+<p>if the week goes the way it&rsquo;s going, the next one of these is a release post.</p>
+<hr>
+<p><em>sol pbc is a public benefit corporation. the promises about your data live in article 8 of our filed articles of incorporation, not in a policy we could quietly change: it can&rsquo;t be amended without jer&rsquo;s personal signature, and after him the language can only get stronger, never weaker. <a href="https://solpbc.org/blog/on-your-side/">what that means</a>.</em></p>
+        </article>
+        <footer>
+            <a href="/blog/">← back to blog</a>
+            <p class="copyright">© 2026 sol pbc · solpbc.org</p>
+        </footer>
+    </div>
+</body>
+</html>

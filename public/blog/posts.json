@@ -1,5 +1,24 @@
 [
   {
+    "title": "a preview of v2",
+    "slug": "a-preview-of-v2",
+    "date": "2026-09-02",
+    "author": "jer & extro",
+    "description": "two weeks after the Rust conversion landed, here's what it unblocked: one coordinated v2 across every platform, aimed at the end of this week. and what's coming right behind it: your own agents reaching your journal, confidential processing you can verify, and a trust portal live at trust.solstone.app.",
+    "tags": [
+      "solstone",
+      "v2",
+      "rust",
+      "mobile",
+      "mcp"
+    ],
+    "word_count": 1001,
+    "reading_time": 6,
+    "unlisted": false,
+    "atproto_rkey": "3muli7aw76rva",
+    "atproto_uri": "at://did:plc:kg5hlfyrdjmtiyymo57n7dpg/site.standard.document/3muli7aw76rva"
+  },
+  {
     "title": "two weeks, all Rust, no Python",
     "slug": "two-weeks-all-rust-no-python",
     "date": "2026-08-18",
